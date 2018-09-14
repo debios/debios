@@ -1,0 +1,27 @@
+@echo off
+cd..
+cd system
+ren system.bat system.debi
+ren program.bat program.debi
+cd..
+cd boot
+ren res.bat res.debi
+ren boot.bat boot.debi
+cd..
+cd zdroj
+ren col.bat col.debi
+ren kalk.bat kalk.debiapp
+ren system.bat system.debi
+cls
+cd..
+cd boot
+echo Vypnuto
+ping -n 1 localhost >nul
+cd..
+cd LOG
+echo ##VYPNUTI## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo. >>log%year%.%month%.%day%.log 
+cd..
+cd boot
+start rn.exe
+exit

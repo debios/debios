@@ -1,0 +1,92 @@
+@echo off
+title Kalkulacka
+color 2E
+for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
+if %second% equ 21 goto chyba
+if %second% equ 41 goto chyba
+if %second% equ 30 goto chyba
+if %second% equ 05 goto chyba
+goto kalk
+
+:chyba
+cd..
+cd data
+cd info
+set /p verze=<ver.debidat
+cd..
+cd..
+cd zdroj
+color 1F
+echo DEBIOS ONE %verze% - ERROR
+echo.
+echo Shromazdovani informaci
+for %%d in ( A L Z ) do echo.|set /p=.
+ping -n 1 localhost >nul
+for %%d in ( A L Z A L Z A L Z A L ) do echo.|set /p=.
+ping -n 1 localhost >nul
+for %%d in ( A ) do echo.|set /p=.
+ping -n 1 localhost >nul
+for %%d in ( A A A A A A A ) do echo.|set /p=.
+ping -n 2 localhost >nul
+echo Program Kalkulacka [ZGViaWNhbGN1bGF0b3I=] prestal pracovat z neznamych
+echo duvodu a zpusobil pad aplikace! Kliknutim na nahodne tlacitko
+echo vstoupite zpet do systemu.
+echo.
+echo Omlouvame se za potize.
+echo Kod chyby: Kalk_FALL_UNKNOWN_%random%
+pause >nul
+start rn.exe
+exit
+
+:kalk
+cls
+echo Vitejte v kalkulacce!
+echo.
+echo Pri zadavani vyrazu pouzijte cisla a matematicke znaky. Seznam vyrazu
+echo zobrazis zadanim prikazu "vyrazy". Kalkulacku vypnes prikazem "stop"
+:vypocitat
+set /p kalk=Zadejte vyraz: 
+
+set vyrazyprikaz=vyrazy
+set vyrazyprikaz2=+
+set vyrazyprikaz3=-
+set vyrazyprikaz4=*
+set vyrazyprikaz5=/
+set odejit=exit
+set odejit2=odejit
+set odejit3=zavrit
+set odejit4=vypnout
+set odejit5=stop
+
+if "%kalk%" equ "%vyrazyprikaz%" goto vyrazy
+if "%kalk%" equ "%vyrazyprikaz2%" goto vyrazy
+if "%kalk%" equ "%vyrazyprikaz3%" goto vyrazy
+if "%kalk%" equ "%vyrazyprikaz4%" goto vyrazy
+if "%kalk%" equ "%vyrazyprikaz5%" goto vyrazy
+if "%kalk%" equ "%odejit%" goto exitt
+if "%kalk%" equ "%odejit2%" goto exitt
+if "%kalk%" equ "%odejit3%" goto exitt
+if "%kalk%" equ "%odejit4%" goto exitt
+if "%kalk%" equ "%odejit5%" goto exitt
+
+set /a vysledek=%kalk%
+echo Vysledek: %vysledek%
+set /a vysledek=0
+goto vypocitat
+
+:exitt
+echo Vypinam aplikaci DebiOS Kalkulacka
+ping localhost >nul
+start rn.exe
+exit
+
+:vyrazy
+cls
+echo Seznam pouzitelnych vyrazu:
+echo.
+echo + Scitani           - Odecitani
+echo * Nasobeni          / Deleni
+echo.
+echo Stiskni ENTER pro navrat do kalkulacky
+pause >nul
+goto kalk

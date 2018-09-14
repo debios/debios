@@ -1,0 +1,187 @@
+@echo off
+cd..
+cd system
+ren system.bat system.debi
+ren program.bat program.debi
+cd..
+cd boot
+ren res.bat res.debi
+ren vyp.bat vyp.debi
+cd..
+cd zdroj
+ren col.bat col.debi
+ren kalk.bat kalk.debiapp
+ren system.bat system.debi
+cls
+cd..
+cd boot
+for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
+set today=%year%.%month%.%day%
+COLOR 2
+for %%d in ( A Z ) do echo.|set /p=DOSONE
+cls
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z ) do echo.|set /p=#
+echo.
+for %%d in ( A ) do echo.|set /p=D
+for %%d in ( A ) do echo.|set /p=e
+for %%d in ( A ) do echo.|set /p=b
+for %%d in ( A ) do echo.|set /p=i
+for %%d in ( A ) do echo.|set /p=O
+for %%d in ( A ) do echo.|set /p=S
+echo.
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z ) do echo.|set /p=#
+ping -n 2 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo     *****
+echo     *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo      *****
+echo      *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo        *****
+echo        *****
+ping -n 1 localhost >nul
+cls
+echo DebiOS se spousti:
+echo.
+echo         *****
+echo         *****
+ping -n 1 localhost >nul
+cls
+cd..
+cd LOG
+echo ##ZAPNUTI## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo. >>log%year%.%month%.%day%.log
+cd..
+cd zdroj
+rename col.debi col.bat
+start col.bat
+exit

@@ -1,0 +1,12 @@
+@echo off
+
+:zadat
+cls
+cd..
+cd programs
+set /p program=Zadejte PRESNE! jmeno programu
+pause
+start %program%
+echo Program startuje, vyckejte
+pause
+goto zadat

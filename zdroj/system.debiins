@@ -1,0 +1,79 @@
+@echo off
+for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
+set today=%year%.%month%.%day%
+set A=A  
+set N=N
+cd..
+cd data
+cd info
+set /p nezev=<title.debidat
+set /p jadr=<kernel.debidat
+set /p verzee=<ver.debidat
+set arch=%processor_architecture%
+set cas=%time%
+set datum=%date%
+cd..
+cd..
+cd zdroj
+:uvod
+color 1F
+title DebiOS System info
+for %%d in ( A ) do echo.|set /p=System info:
+ping localhost >nul
+echo.
+echo Nazev systemu: %nezev%
+echo Jadro systemu: %jadr%
+ping localhost -n 2 >nul
+echo Verze systemu: %verzee%
+ping localhost -n 1 >nul
+echo Architektura procesoru: %processor_architecture% 
+echo Aktualni cas: %time%
+echo Datum: %date%
+ping localhost -n 2 >nul
+echo.
+:rozhodnuti
+echo Prejete si tento vypis ulozit do souboru? A/N
+echo.
+set /p an=
+if /i %an%==%A% goto ano
+if /i %an%==%N% goto neee
+
+msg %username% Neplatna odpoved!
+pause
+GOTO rozhodnuti
+
+
+:ano
+cls
+cd..
+cd log
+echo #######################%DATE%,%time%####################### >>log%year%.%month%.%day%.log
+echo %nezev% >>log%year%.%month%.%day%.log
+echo %jadr% >>log%year%.%month%.%day%.log
+echo %verzee% >>log%year%.%month%.%day%.log
+echo %arch% >>log%year%.%month%.%day%.log
+echo %cas% >>log%year%.%month%.%day%.log
+echo %datum% >>log%year%.%month%.%day%.log
+echo Vypis proveden %date%, %cas% uzivatelem %username% (%uzivatel%)>>log%year%.%month%.%day%.log
+echo ###########################KONEC########################### >>log%year%.%month%.%day%.log
+echo. >>log%year%.%month%.%day%.log
+echo Vypis uspesne ulozen do souboru 
+echo log%year%.%month%.%day%.log ve slozce LOG
+echo Stisknete nahodne tlacitko pro navraceni do systemu
+PAUSE
+cd..
+cd zdroj
+start rn.exe
+rename col.debi col.bat
+call col.bat
+exit
+
+
+:neee
+cls
+echo Stisknete nahodne tlacitko pro navraceni do systemu
+PAUSE
+start rn.exe
+rename col.debi col.bat
+call col.bat
+exit
