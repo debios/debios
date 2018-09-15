@@ -1,7 +1,7 @@
 @echo off
 for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
 set today=%year%.%month%.%day%
-set A=A  
+set A=Y  
 set N=N
 cd..
 cd data
@@ -14,31 +14,31 @@ set cas=%time%
 set datum=%date%
 cd..
 cd..
-cd zdroj
+cd core
 :uvod
 color 1F
 title DebiOS System info
 for %%d in ( A ) do echo.|set /p=System info:
 ping localhost >nul
 echo.
-echo Nazev systemu: %nezev%
-echo Jadro systemu: %jadr%
+echo System title: %nezev%
+echo System kernel: %jadr%
 ping localhost -n 2 >nul
-echo Verze systemu: %verzee%
+echo System version: %verzee%
 ping localhost -n 1 >nul
-echo Architektura procesoru: %processor_architecture% 
-echo Aktualni cas: %time%
-echo Datum: %date%
+echo CPU architecture: %processor_architecture%
+echo Time: %time%
+echo Date: %date%
 ping localhost -n 2 >nul
 echo.
 :rozhodnuti
-echo Prejete si tento vypis ulozit do souboru? A/N
+echo Do you want to save this data to file? Y/N
 echo.
 set /p an=
 if /i %an%==%A% goto ano
 if /i %an%==%N% goto neee
 
-msg %username% Neplatna odpoved!
+msg %username% Use Y/N!
 pause
 GOTO rozhodnuti
 
@@ -46,7 +46,7 @@ GOTO rozhodnuti
 :ano
 cls
 cd..
-cd log
+cd LOG
 echo #######################%DATE%,%time%####################### >>log%year%.%month%.%day%.log
 echo %nezev% >>log%year%.%month%.%day%.log
 echo %jadr% >>log%year%.%month%.%day%.log
@@ -54,26 +54,27 @@ echo %verzee% >>log%year%.%month%.%day%.log
 echo %arch% >>log%year%.%month%.%day%.log
 echo %cas% >>log%year%.%month%.%day%.log
 echo %datum% >>log%year%.%month%.%day%.log
-echo Vypis proveden %date%, %cas% uzivatelem %username% (%uzivatel%)>>log%year%.%month%.%day%.log
-echo ###########################KONEC########################### >>log%year%.%month%.%day%.log
+echo File created on %date%, %cas% by user %username% (%uzivatel%)>>log%year%.%month%.%day%.log
+echo ############################END############################ >>log%year%.%month%.%day%.log
 echo. >>log%year%.%month%.%day%.log
-echo Vypis uspesne ulozen do souboru 
-echo log%year%.%month%.%day%.log ve slozce LOG
-echo Stisknete nahodne tlacitko pro navraceni do systemu
+echo Data saved to file: 
+echo log%year%.%month%.%day%.log in folder LOG
+echo Click ENTER to return to the system
 PAUSE
 cd..
-cd zdroj
-start rn.exe
+cd core
 rename col.debi col.bat
 call col.bat
+call rename system.bat system.debi
 exit
 
 
 :neee
 cls
-echo Stisknete nahodne tlacitko pro navraceni do systemu
+echo Click ENTER to return to the system
 PAUSE
-start rn.exe
 rename col.debi col.bat
 call col.bat
+call rename system.bat system.debi
 exit
+

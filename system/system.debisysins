@@ -3,8 +3,11 @@ cd..
 cd boot
 rename boot.bat boot.debi
 cd..
-cd zdroj
-start rn.exe
+cd core
+ren col.bat col.debi
+ren kalk.bat kalk.debiapp
+ren system.bat system.debi
+cls
 cd..
 cd data
 cd info
@@ -44,14 +47,14 @@ echo                    DebiOS One %verzicka%
 echo.
 echo                      %nazevverzicky%
 echo.
-echo                    Vitejte %uzivatel%! 
+echo                    Welcome %uzivatel%! 
 echo.
-echo                  Cas: %date% %time% 
+echo                  Time: %date% %time% 
 echo.                                                                                                             
 echo ##################################################################
-echo DebiOS Prikazovy radek: Seznam prikazu zobrazite prikazem "help"! 
+echo DebiOS Command line: To get list of commands type "help"! 
 :prikaz
-set /p prikaz=DebiOS Prikazovy radek: 
+set /p prikaz=DebiOS Command line: 
 
 set vypnou=vypnout
 set vypnou2=stop
@@ -108,11 +111,11 @@ set sysinfo6=ver
 
 set superuser=superuser
 
-set zmenajmenaAAA=zmenajmena
-set zmenajmenaAAA2=zmenit jmeno
-set zmenajmenaAAA3=zmenit nick
-set zmenajmenaAAA4=zmenitjmeno
-set zmenajmenaAAA5=zmenitnick
+set zmenajmenaAAA=namechange
+set zmenajmenaAAA2=name change
+set zmenajmenaAAA3=nickchange
+set zmenajmenaAAA4=nick change
+set zmenajmenaAAA5=zmenit nick
 set zmenajmenaAAA6=zmena jmena
 
 set clear1=vycistit
@@ -261,23 +264,23 @@ if NOT "%prikaz%" equ "%clear3% goto neplatny
 
 
 
-echo Neplatny prikaz!
+echo Unknown command!
 goto prikaz
  
 :neplatny
-echo Neplatny prikaz!
+echo Unknown command!
 goto prikaz 
   
 :SU-root
-set /p helso=Heslo:
+set /p helso=Password:
 set heslo=flib98855
 if /i %helso%==%heslo% goto suroot
 
-msg * Neplatne heslo (snazite se hacknout system?)
+msg * Forbidden... (are you trying to hack system?)
 goto prikaz
 
 :dattt
-echo Datum: %date%
+echo Date: %date%
 goto prikaz
 
 :suroot  
@@ -287,15 +290,15 @@ rename boot.debi boot.bat
 rename vyp.debi vyp.bat
 rename reset.debi reset.bat
 cd..
-cd zdroj
+cd core
 rename kalk.debiapp kalk.bat
 rename system.debi system.bat
-echo System odemcen! Jeho funkcnost muze byt timto krokem narusena... 
+echo System unlocked! Glitches may appear... 
 goto prikaz
                             
 :sysinfo
 cd..
-cd zdroj
+cd core
 cls
 rename system.debi system.bat
 call system.bat
@@ -307,12 +310,6 @@ cd..
 cd boot
 rename vyp.debi vyp.bat
 start vyp.bat
-cd..
-cd system
-start rn.exe
-cd..
-cd zdroj
-start rn.exe
 exit
 
 
@@ -323,39 +320,35 @@ cd..
 cd boot
 rename reset.debi reset.bat
 start reset.bat
-cd..
-cd system
-start rn.exe
 exit
 
 
 
 :tim
-echo Cas: %time%
+echo Time: %time%
 goto prikaz
 
 
 
 :nam
-echo Jmeno uzivatele PC je: %username%
-echo Jmeno uzivatele DebiOS je: %uzivatel%
+echo Windows username: %username%
+echo DebiOS username: %uzivatel%
 goto prikaz
 
 
 
 :pom
-echo Prikazy:
-echo vypnout - Vypne DebiOS
-echo restart - Restartuje DebiOS
-echo cas - ¬as
-echo jmeno - Jmeno aktualniho uzivatele ve Windows
-echo help - Pomoc s prikazy
-echo kalkulacka - Kalkulacka: scitani,odcitani pro 3 cisla
-echo program - Spusti okno ve kterem muzete spoustet programy
-echo market - Spusti market (vyzaduje internet)
-echo systeminfo - Info o systemu DebiOS (verze atp.) 
-echo zmenajmena - Zmena uzivatelskeho jmena
-echo vycistit - Vycisti prikazovy radek
+echo Commands:
+echo shutdown - Shutdown DebiOS (please use when you're exiting DebiOS)
+echo restart - Restart DebiOS
+echo date - Shows date
+echo time - Shows time
+echo name - Shows Windows and DebiOS username
+echo help - List of commands
+echo calculator - Calculator
+echo systeminfo - Informations about system (version etc.) 
+echo namechange - DebiOS username change
+echo clear - Clears command line
 goto prikaz
 
 :prog
@@ -371,20 +364,20 @@ goto prikaz
 
 :kalku
 cd..
-cd zdroj
+cd core
 rename kalk.debiapp kalk.bat
 start kalk.bat
-echo Spoustim kalkulacku...
+echo Starting calculator...
 ping localhost -n 1 >nul
 goto prikaz
 
 :zmenajmenaA
 cd..
 cd data
-set /p uzivatel=Zadejte nove uzivatelske jmeno: 
+set /p uzivatel=Choose new username: 
 del user.debidat
 echo %uzivatel% >>user.debidat
-echo Jmeno uspesne zmeneno! Restart...
+echo Done! Restarting...
 pause >nul
 goto res
 

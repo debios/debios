@@ -8,7 +8,7 @@ cd boot
 ren res.bat res.debi
 ren vyp.bat vyp.debi
 cd..
-cd zdroj
+cd core
 ren col.bat col.debi
 ren kalk.bat kalk.debiapp
 ren system.bat system.debi
@@ -32,145 +32,145 @@ echo.
 for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z ) do echo.|set /p=#
 ping -n 2 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo     *****
 echo     *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo      *****
 echo      *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo        *****
 echo        *****
 ping -n 1 localhost >nul
 cls
-echo DebiOS se spousti:
+echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
@@ -178,10 +178,10 @@ ping -n 1 localhost >nul
 cls
 cd..
 cd LOG
-echo ##ZAPNUTI## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo ##STARTUP## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo. >>log%year%.%month%.%day%.log
 cd..
-cd zdroj
+cd core
 rename col.debi col.bat
 start col.bat
 exit

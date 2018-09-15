@@ -1,5 +1,5 @@
 @echo off
-title Kalkulacka
+title Calculator
 color 2E
 for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
 if %second% equ 21 goto chyba
@@ -19,7 +19,7 @@ cd zdroj
 color 1F
 echo DEBIOS ONE %verze% - ERROR
 echo.
-echo Shromazdovani informaci
+echo Collecting informations...
 for %%d in ( A L Z ) do echo.|set /p=.
 ping -n 1 localhost >nul
 for %%d in ( A L Z A L Z A L Z A L ) do echo.|set /p=.
@@ -28,24 +28,23 @@ for %%d in ( A ) do echo.|set /p=.
 ping -n 1 localhost >nul
 for %%d in ( A A A A A A A ) do echo.|set /p=.
 ping -n 2 localhost >nul
-echo Program Kalkulacka [ZGViaWNhbGN1bGF0b3I=] prestal pracovat z neznamych
-echo duvodu a zpusobil pad aplikace! Kliknutim na nahodne tlacitko
-echo vstoupite zpet do systemu.
 echo.
-echo Omlouvame se za potize.
-echo Kod chyby: Kalk_FALL_UNKNOWN_%random%
+echo App [ Calculator ] stopped working!
+echo Click ENTER to return to the system...
+echo.
+echo Sorry for problems.
+echo Error ID: Calculator_UNKNOWN_%random%
 pause >nul
-start rn.exe
+call ren kalk.bat kalk.debiapp
 exit
 
 :kalk
 cls
-echo Vitejte v kalkulacce!
+echo Welcome to calculator!
 echo.
-echo Pri zadavani vyrazu pouzijte cisla a matematicke znaky. Seznam vyrazu
-echo zobrazis zadanim prikazu "vyrazy". Kalkulacku vypnes prikazem "stop"
+echo If you want to exit calculator, type "exit"
 :vypocitat
-set /p kalk=Zadejte vyraz: 
+set /p kalk=Enter math expression: 
 
 set vyrazyprikaz=vyrazy
 set vyrazyprikaz2=+
@@ -70,23 +69,26 @@ if "%kalk%" equ "%odejit4%" goto exitt
 if "%kalk%" equ "%odejit5%" goto exitt
 
 set /a vysledek=%kalk%
-echo Vysledek: %vysledek%
+echo Result: %vysledek%
 set /a vysledek=0
 goto vypocitat
 
 :exitt
-echo Vypinam aplikaci DebiOS Kalkulacka
+echo Shutting down...
 ping localhost >nul
 start rn.exe
 exit
 
 :vyrazy
 cls
-echo Seznam pouzitelnych vyrazu:
+echo List of usable expressions:
 echo.
-echo + Scitani           - Odecitani
-echo * Nasobeni          / Deleni
+echo + Add            - Substract
+echo * Multiply       / Divide
 echo.
-echo Stiskni ENTER pro navrat do kalkulacky
+echo Example: 5*3-6
+echo Result: 9
+echo.
+echo Click ENTER to return to the calculator
 pause >nul
 goto kalk
