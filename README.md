@@ -26,53 +26,54 @@ If there is some error on install process, you get **blue screen** with informat
 If you have suspicion that DebiOS is not working properly, such as missing colors or Windows command line errors, check that you have all files installed in system. Most of files can be replaced after installation(only change file suffix from ".debiins" or ".debisysins" to ".debi"), but files as core/col.debi and data folder CAN'T be replaced and you must remove DebiOS and install it again. If you are sure, that you have all files in directories, please **open an issue**.
 
 ## Changelog
-**Beta 14.3.29a:** 
--Booting and shutdown
--Added shutdown, time, date and username features
 
-**Beta 14.3.29b:** 
--Added "restart" feature 
-
-**Beta 14.3.30:** 
--Faster shutdown
--Upgraded color user interface
--Removed useless files
-
-**Full 14.5.24:** 
--Removed useless files
--Reduced size
-
-**Beta 14.8.05:**
--New booting screen
--Added calculator feature
-
-**DebiOS REVOLUTION:** 
--Calculator repaired
--Added DebiOS market feature
--Booting errors repaired
-
-**DebiOS 4.1.17U**
--Recoded kernel
--Installation is needed to use DebiOS
--Color user interface setting
--Date feature error fixed
--Improved booting and shutdown time
--New filesystem (.debi, .debiins, .debisys) *RenEngine 1.0*
--Systeminfo
--Improved calculator
-
-**DebiOS 4.5.17U**
--Some changes in UI
--Username feature
--Fixed bugs
-
-**DebiOS 16.7.18-dev**
--Improved installation (detection of errors)
--RenEngine 1.1 filesystem
--Data storing improved
-
-**DebiOS 15.9.18-dev**
--Translation to english
--Improved installation mechanism
--Data storing improved
--iRE filesystem
+> **Beta 14.3.29a:** 
+> -Booting and shutdown
+> -Added shutdown, time, date and username features
+> 
+> **Beta 14.3.29b:** 
+> -Added "restart" feature 
+> 
+> **Beta 14.3.30:** 
+> -Faster shutdown
+> -Upgraded color user interface
+> -Removed useless files
+> 
+> **Full 14.5.24:** 
+> -Removed useless files
+> -Reduced size
+> 
+> **Beta 14.8.05:**
+> -New booting screen
+> -Added calculator feature
+> 
+> **DebiOS REVOLUTION:** 
+> -Calculator repaired
+> -Added DebiOS market feature
+> -Booting errors repaired
+> 
+> **DebiOS 4.1.17U**
+> -Recoded kernel
+> -Installation is needed to use DebiOS
+> -Color user interface setting
+> -Date feature error fixed
+> -Improved booting and shutdown time
+> -New filesystem (.debi, .debiins, .debisys) *RenEngine 1.0*
+> -Systeminfo
+> -Improved calculator
+> 
+> **DebiOS 4.5.17U**
+> -Some changes in UI
+> -Username feature
+> -Fixed bugs
+> 
+> **DebiOS 16.7.18-dev**
+> -Improved installation (detection of errors)
+> -RenEngine 1.1 filesystem
+> -Data storing improved
+> 
+> **DebiOS 15.9.18-dev**
+> -Translation to english
+> -Improved installation mechanism
+> -Data storing improved
+> -iRE filesystem
