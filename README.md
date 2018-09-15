@@ -20,9 +20,11 @@ You can turn on system by **DebiOS.exe** file. System is automatically turned on
 
 ## Fixing errors
 
-### Installation errors If there is some error on install process, you get **blue screen** with informations about errors. Mostly it is missing files - just download them and place them in folder where they belongs. If you are sure, that you have all files in directories, please **open an issue**. If you get errors, that **doesn't** show blue screen, please **open an issue**.
+### Installation errors  
+If there is some error on install process, you get **blue screen** with informations about errors. Mostly it is missing files - just download them and place them in folder where they belongs. If you are sure, that you have all files in directories, please **open an issue**. If you get errors, that **doesn't** show blue screen, please **open an issue**.
 
-### System errors If you have suspicion that DebiOS is not working properly, such as missing colors or Windows command line errors, check that you have all files installed in system. Most of files can be replaced after installation(only change file suffix from ".debiins" or ".debisysins" to ".debi"), but files as core/col.debi and data folder CAN'T be replaced and you must remove DebiOS and install it again. If you are sure, that you have all files in directories, please **open an issue**.
+### System errors  
+If you have suspicion that DebiOS is not working properly, such as missing colors or Windows command line errors, check that you have all files installed in system. Most of files can be replaced after installation(only change file suffix from ".debiins" or ".debisysins" to ".debi"), but files as core/col.debi and data folder CAN'T be replaced and you must remove DebiOS and install it again. If you are sure, that you have all files in directories, please **open an issue**.
 
 ## Changelog
 
