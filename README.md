@@ -6,7 +6,8 @@
 # About
 **DebiOS** is simulation of operating system, developed completely in **batch**. Whole system is based on few files that interact with each others. This simulator DOESN'T affect your computer, it CAN'T communicate with internet, so don't worry about losing data, infecting your computer, etc.
 
-## History of DebiOS First version of **DebiOS** (beta14.3.29a, lost) was created on *March, 29 2014*. It was simple and only things that it could was boot, shutdown, show time, username and date and... that was all. It had only **12kB** and it was written completely in batch. All texts were in *czech* language and it was kinda boring. Last update was in **October, 2014** and then we started creating new system from the scratch. We called it "**One**" and previous versions kernel were called "**OpenTail**". But development was stopped and for another
+## History of DebiOS  
+First version of **DebiOS** (beta14.3.29a, lost) was created on *March, 29 2014*. It was simple and only things that it could was boot, shutdown, show time, username and date and... that was all. It had only **12kB** and it was written completely in batch. All texts were in *czech* language and it was kinda boring. Last update was in **October, 2014** and then we started creating new system from the scratch. We called it "**One**" and previous versions kernel were called "**OpenTail**". But development was stopped and for another
 *two years* there was no updates. On the beginning of 2017 i started developing **DebiOS** again in my free time and now I'm presenting
 **translated version** with **new kernel and mechanisms**. Whole system is written in **batch** (only some parts, such as installation, is compiled).
 
@@ -75,6 +76,6 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 
 **DebiOS 15.9.18-dev**  
 -Translation to english  
--Improved installation mechanism
+-Improved installation mechanism  
 -Data storing improved  
 -iRE filesystem  
