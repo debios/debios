@@ -76,6 +76,6 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 
 **DebiOS 15.9.18-dev**  
 -Translation to english  
--Improved installation mechanism
+-Improved installation mechanism  
 -Data storing improved  
 -iRE filesystem  
