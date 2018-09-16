@@ -25,7 +25,7 @@ cd system
 goto splashscreen
 
 :notguuuud
-set uzivatel=Nepovolene jmeno
+set uzivatel=Invalid username
 cd..
 cd system
 cls
