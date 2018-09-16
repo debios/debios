@@ -23,5 +23,5 @@ echo ##SHUTDOWN## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo. >>log%year%.%month%.%day%.log 
 cd..
 cd boot
+call exit
 call rename vyp.bat vyp.debi
-exit
