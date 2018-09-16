@@ -79,3 +79,6 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Improved installation mechanism  
 -Data storing improved  
 -iRE filesystem  
+
+**DebiOS 16.9.18-dev**  
+-Translations and glitches fixed  
