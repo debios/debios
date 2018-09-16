@@ -17,8 +17,8 @@ cd..
 set notgud=debios
 set notguud=superuser
 set /p uzivatel=<user.debidat
-if /i %uzivatel%==%notguud% goto notguuuud
-if /i %uzivatel%==%notgud% goto notguuuud
+if /i "%uzivatel%" equ "%notguud%" goto notguuuud
+if /i "%uzivatel%" equ "%notgud%" goto notguuuud
 
 cd..
 cd system
