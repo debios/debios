@@ -27,7 +27,7 @@ If there is some error on install process, you get **blue screen** with informat
 ### System errors  
 If you have suspicion that DebiOS is not working properly, such as missing colors or Windows command line errors, check that you have all files installed in system. Most of files can be replaced after installation(only change file suffix from ".debiins" or ".debisysins" to ".debi"), but files as core/col.debi and data folder CAN'T be replaced and you must remove DebiOS and install it again. If you are sure, that you have all files in directories, please **open an issue**.
 
-## Changelog
+## Changelog  
 
 **Beta 14.3.29a:**   
 -Booting and shutdown  
@@ -82,3 +82,13 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 
 **DebiOS 16.9.18-dev**  
 -Translations and glitches fixed  
+
+## TODO  
+  
+Multimedia functions  
+Fully customizable CUI  
+Advanced logging  
+Advanced update system  
+Multilanguage support  
+Mouse control support  
+Create GUI for DebiOS  
