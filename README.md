@@ -84,8 +84,8 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Translations and glitches fixed  
 
 **DebiOS 18.9.18-dev**  
--Fixed some bugs
--AUTOMATIC UPDATE SYSTEM (if update is available, system notifies user, update via command)
+-Fixed some bugs   
+-AUTOMATIC UPDATE SYSTEM (if update is available, system notifies user, update via command)   
 
 
 ## TODO  
