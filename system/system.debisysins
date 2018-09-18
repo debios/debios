@@ -2,6 +2,9 @@
 cd..
 cd boot
 rename boot.bat boot.debi
+rename vyp.bat vyp.debi
+rename reset.bat reset.debi
+cls
 cd..
 cd core
 ren col.bat col.debi
@@ -13,22 +16,50 @@ cd data
 cd info
 set /p verzicka=<ver.debidat
 set /p nazevverzicky=<title.debidat
-cd..
 set notgud=debios
 set notguud=superuser
 set /p uzivatel=<user.debidat
-if /i "%uzivatel%" equ "%notguud%" goto notguuuud
-if /i "%uzivatel%" equ "%notgud%" goto notguuuud
-
+cd..
 cd..
 cd system
+if /i "%uzivatel%" equ "%notguud%" goto notguuuud
+if /i "%uzivatel%" equ "%notgud%" goto notguuuud
+cls
+
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
+echo Loading core...
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
+cls
+set /p latest=<latest.debidat
+if "%latest%" equ "%verzicka%" del latest.debidat
+if "%latest%" equ "%verzicka%" del latesttitle.debidat
+if "%latest%" equ "%verzicka%" del latestkernel.debidat
+if "%latest%" equ "%verzicka%" goto splashscreen
+set isupdate=true
+cls
 goto splashscreen
+
+
 
 :notguuuud
 set uzivatel=Invalid username
 cd..
 cd system
 cls
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
+echo Loading core...
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
+cls
+set /p latest=<latest.debidat
+if "%latest%" equ "%verzicka%" del latest.debidat
+if "%latest%" equ "%verzicka%" del latesttitle.debidat
+if "%latest%" equ "%verzicka%" del latestkernel.debidat
+if "%latest%" equ "%verzicka%" goto splashscreen
+set isupdate=true
+cls
+goto splashscreen
 
 :splashscreen
 cls
@@ -50,6 +81,11 @@ echo.
 echo                    Welcome %uzivatel%! 
 echo.
 echo                  Time: %date% %time% 
+if NOT "%isupdate%" equ "true" goto endofss
+echo.
+echo     An update to version %latest% is available! For update
+echo                   type command "update"!
+:endofss
 echo.                                                                                                             
 echo ##################################################################
 echo DebiOS Command line: To get list of commands type "help"! 
@@ -122,6 +158,8 @@ set clear1=vycistit
 set clear2=clear
 set clear3=cls
 
+set update1=update
+
 if /i "%prikaz%" equ "%vypnou%" goto shu
 if /i "%prikaz%" equ "%vypnou2%" goto shu
 if /i "%prikaz%" equ "%vypnou3%" goto shu
@@ -187,6 +225,8 @@ if /i "%prikaz%" equ "%zmenajmenaAAA6%" goto zmenajmenaA
 if /i "%prikaz%" equ "%clear1%" goto clear
 if /i "%prikaz%" equ "%clear2%" goto clear
 if /i "%prikaz%" equ "%clear3%" goto clear
+
+if /i "%prikaz%" equ "%update1%" goto update
 
 if "%prikaz%" equ "" set "prikaz=neplatny"
 if "%prikaz%" equ " " set "prikaz=neplatny"
@@ -261,7 +301,7 @@ if NOT "%prikaz%" equ "%clear1% goto neplatny
 if NOT "%prikaz%" equ "%clear2% goto neplatny
 if NOT "%prikaz%" equ "%clear3% goto neplatny
 
-
+if NOT "%prikaz%" equ "%update1%" goto neplatny
 
 
 echo Unknown command!
@@ -383,3 +423,110 @@ goto res
 
 :clear
 goto splashscreen
+
+:update
+SET mypath=%~dp0
+if "%latest%" equ "%verzicka%" goto noupdate
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+mkdir updatefiles
+copy download.exe %cd%\updatefiles\download.exe
+cd updatefiles
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/system/program.debiins program.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/system/system.debisysins system.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiins systeminfo.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/boot.debiins boot.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/vyp.debiins vyp.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/reset.debiins reset.debi
+cls
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+cls 
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+echo Deleting old files...
+cd..
+cd..
+cd boot
+del vyp.debi
+del reset.debi
+del boot.debi
+del vyp.bat
+del reset.bat
+del boot.bat
+cd..
+cd system
+del program.debi
+del program.bat
+cd..
+cd core
+del kalk.debiapp
+del system.debi
+del kalk.bat
+del system.bat
+cls 
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+echo Deleting old files...
+echo Installing new files...
+cd..
+move %cd%\system\updatefiles\program.debi %cd%\system\
+move %cd%\system\updatefiles\systeminfo.debi %cd%\core\
+move %cd%\system\updatefiles\kalk.debiapp %cd%\core\
+move %cd%\system\updatefiles\vyp.debi %cd%\boot\
+move %cd%\system\updatefiles\boot.debi %cd%\boot\
+move %cd%\system\updatefiles\reset.debi %cd%\boot\
+rename %cd%\core\systeminfo.debi system.debi
+cls 
+echo Updating, please wait...
+echo.
+echo Downloading latest files...
+echo Deleting old files...
+echo Installing new files...
+cd data
+echo yes >updateprogress.debidat
+echo Click ENTER to restart DebiOS
+pause >nul
+cls
+cd..
+cd boot
+rename reset.debi reset.bat
+start reset.bat
+exit
+
+
+
+
+:noupdate
+echo No update available!
+goto prikaz

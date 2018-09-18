@@ -182,18 +182,52 @@ echo Starting up DebiOS:
 echo.
 echo         *****
 echo         *****
-ping -n 1 localhost >nul
+ping -n 1 localhost >nul               
 cls
 cd..
-cd core
-rename col.debi col.bat
-start col.bat
-cd..
-cd boot
+cd data
+
+if NOT EXIST "updateprogress.debidat" goto neexistuje
+
+set /p updateprogress=<updateprogress.debidat
+set yep=yes
+if %updateprogress%==%yep% goto updateyes
+
+
+:neexistuje
 cd..
 cd LOG
 echo ##RESTART## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo. >>log%year%.%month%.%day%.log
 cd..
-cd boot
+cd core
+rename col.debi col.bat
+start col.bat
+exit
+
+:updateyes
+cd..
+move %cd%\system\updatefiles\system.debi %cd%\system\system.debi
+del %cd%\system\updatefiles\download.exe
+rmdir %cd%\system\updatefiles\ /q
+del %cd%\data\updateprogress.debidat
+cd LOG
+echo ##RESTART## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo ##UPDATE## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo. >>log%year%.%month%.%day%.log
+cd..
+cd data
+cd info
+del ver.debidat
+del title.debidat
+del kernel.debidat
+cd..
+cd..
+move %cd%\system\latest.debidat %cd%\data\info\ver.debidat
+move %cd%\system\latesttitle.debidat %cd%\data\info\title.debidat
+move %cd%\system\latestkernel.debidat %cd%\data\info\kernel.debidat
+del %cd%\system\latest.debidat
+cd core
+rename col.debi col.bat
+start col.bat
 exit
