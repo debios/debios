@@ -83,12 +83,17 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 **DebiOS 16.9.18-dev**  
 -Translations and glitches fixed  
 
+**DebiOS 18.9.18-dev**  
+-Fixed some bugs
+-AUTOMATIC UPDATE SYSTEM (if update is available, system notifies user, update via command)
+
+
 ## TODO  
   
 Multimedia functions  
 Fully customizable CUI  
 Advanced logging  
-Advanced update system  
+Advanced update system **✓**  
 Multilanguage support  
 Mouse control support  
 Create GUI for DebiOS  
