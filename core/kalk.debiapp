@@ -75,8 +75,8 @@ goto vypocitat
 
 :exitt
 echo Shutting down...
-ping localhost >nul
-start rn.exe
+call exit
+call rename kalk.bat kalk.debiapp
 exit
 
 :vyrazy
