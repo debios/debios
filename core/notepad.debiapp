@@ -1,0 +1,68 @@
+@echo off
+title Notepad
+
+:mainmenu
+mode con: cols=81 lines=30
+cls
+echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
+echo.
+echo                     Help:
+echo                     create - Creates a file
+echo                     exit - Exits notepad app
+echo.
+goto cmd
+:badcmd
+echo Unknown command!
+:cmd
+set /p prikaz=Command: 
+
+set create=create
+set exit=exit
+
+if %prikaz%==%create% goto newfile
+if %prikaz%==%exit% goto exit
+if "%prikaz%" equ "" goto badcmd
+if "%prikaz%" equ " " goto badcmd
+goto badcmd
+
+:newfiledeny
+echo Please select different filename
+:newfile
+set /p filename=Set filename: 
+
+if "%filename%" equ "" goto newfiledeny
+if "%filename%" equ " " goto newfiledeny
+if "%filename%" equ "  " goto newfiledeny
+if "%filename%" equ "   " goto newfiledeny
+if "%filename%" equ "    " goto newfiledeny
+
+
+cd..
+if not exist "%cd%\user" mkdir user
+cd user
+cls
+echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
+echo Filename: %filename%.txt - TO SAVE FILE TYPE "SAVE"
+echo.
+:content
+set /p content=
+set save=SAVE
+if %content%==%save% goto save
+echo %content% >> %filename%.txt
+goto content
+
+:save
+cd..
+cd core
+echo.
+echo File saved to /user/%filename%.txt
+echo Press ENTER to return to main menu
+pause >nul
+goto mainmenu
+
+
+
+:exit
+echo Shutting down...
+call rename notepad.bat notepad.debiapp
+call exit
