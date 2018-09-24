@@ -87,6 +87,11 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Fixed some bugs   
 -AUTOMATIC UPDATE SYSTEM (if update is available, system notifies user, update via command)   
 
+**DebiOS 24.9.18-dev**  
+-Fixed some bugs   
+-Added NOTEPAD feature
+-Notepad will be downloaded automatically
+
 
 ## TODO  
   
