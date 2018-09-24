@@ -19,8 +19,8 @@ set /p prikaz=Command:
 set create=create
 set exit=exit
 
-if %prikaz%==%create% goto newfile
-if %prikaz%==%exit% goto exit
+if "%prikaz%" equ "%create%" goto newfile
+if "%prikaz%" equ "%exit%" goto exit
 if "%prikaz%" equ "" goto badcmd
 if "%prikaz%" equ " " goto badcmd
 goto badcmd
@@ -47,7 +47,7 @@ echo.
 :content
 set /p content=
 set save=SAVE
-if %content%==%save% goto save
+if "%content%" equ "%save%" goto save
 echo %content% >> %filename%.txt
 goto content
 
@@ -64,5 +64,5 @@ goto mainmenu
 
 :exit
 echo Shutting down...
-call rename notepad.bat notepad.debiapp
 call exit
+call rename notepad.bat notepad.debiapp

@@ -9,7 +9,25 @@ cd..
 cd core
 ren col.bat col.debi
 ren kalk.bat kalk.debiapp
+ren notepad.bat notepad.debiapp
 ren system.bat system.debi
+cls
+if not exist "%cd%\notepad.debiapp" goto notepadmissing
+if not exist "%cd%\kalk.debiapp" goto calcmissing
+goto afterinstall
+
+:notepadmissing
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+if not exist "%cd%\kalk.debiapp" goto calcmissing
+goto afterinstall
+
+:calcmissing
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+goto afterinstall
+
+:afterinstall
 cls
 cd..
 cd data
@@ -25,6 +43,8 @@ cd system
 if /i "%uzivatel%" equ "%notguud%" goto notguuuud
 if /i "%uzivatel%" equ "%notgud%" goto notguuuud
 cls
+
+
 
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
 echo Loading core...
@@ -158,6 +178,10 @@ set clear1=vycistit
 set clear2=clear
 set clear3=cls
 
+set notepad1=notepad
+set notepad2=write
+set notepad3=word
+
 set update1=update
 
 if /i "%prikaz%" equ "%vypnou%" goto shu
@@ -225,6 +249,10 @@ if /i "%prikaz%" equ "%zmenajmenaAAA6%" goto zmenajmenaA
 if /i "%prikaz%" equ "%clear1%" goto clear
 if /i "%prikaz%" equ "%clear2%" goto clear
 if /i "%prikaz%" equ "%clear3%" goto clear
+
+if /i "%prikaz%" equ "%notepad1%" goto notepad
+if /i "%prikaz%" equ "%notepad2%" goto notepad
+if /i "%prikaz%" equ "%notepad3%" goto notepad
 
 if /i "%prikaz%" equ "%update1%" goto update
 
@@ -301,6 +329,10 @@ if NOT "%prikaz%" equ "%clear1% goto neplatny
 if NOT "%prikaz%" equ "%clear2% goto neplatny
 if NOT "%prikaz%" equ "%clear3% goto neplatny
 
+if NOT "%prikaz%" equ "%notepad1% goto neplatny
+if NOT "%prikaz%" equ "%notepad2% goto neplatny
+if NOT "%prikaz%" equ "%notepad3% goto neplatny
+
 if NOT "%prikaz%" equ "%update1%" goto neplatny
 
 
@@ -326,13 +358,13 @@ goto prikaz
 :suroot  
 cd..
 cd boot
-rename boot.debi boot.bat
-rename vyp.debi vyp.bat
-rename reset.debi reset.bat
+rename boot.debi boot.bat       >nul
+rename vyp.debi vyp.bat >nul
+rename reset.debi reset.bat     >nul
 cd..
 cd core
-rename kalk.debiapp kalk.bat
-rename system.debi system.bat
+rename kalk.debiapp kalk.bat      >nul
+rename system.debi system.bat     >nul
 echo System unlocked! Glitches may appear... 
 goto prikaz
                             
@@ -340,7 +372,7 @@ goto prikaz
 cd..
 cd core
 cls
-rename system.debi system.bat
+rename system.debi system.bat      >nul
 call system.bat
 exit
 
@@ -348,7 +380,7 @@ exit
 cls
 cd..
 cd boot
-rename vyp.debi vyp.bat
+rename vyp.debi vyp.bat   >nul
 start vyp.bat
 exit
 
@@ -389,6 +421,7 @@ echo calculator - Calculator
 echo systeminfo - Informations about system (version etc.) 
 echo namechange - DebiOS username change
 echo clear - Clears command line
+echo notepad - Notepad for writing files
 goto prikaz
 
 :prog
@@ -405,7 +438,7 @@ goto prikaz
 :kalku
 cd..
 cd core
-rename kalk.debiapp kalk.bat
+rename kalk.debiapp kalk.bat  >nul
 start kalk.bat
 echo Starting calculator...
 ping localhost -n 1 >nul
@@ -524,9 +557,15 @@ rename reset.debi reset.bat
 start reset.bat
 exit
 
-
-
-
 :noupdate
 echo No update available!
+goto prikaz
+
+:notepad
+cd..
+cd core
+rename notepad.debiapp notepad.bat  >nul
+start notepad.bat
+echo Starting notepad...
+ping localhost -n 1 >nul
 goto prikaz
