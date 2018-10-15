@@ -1,5 +1,9 @@
 @echo off
 cd..
+cd data
+set /p barva=<color.debidat
+color %barva%
+cd..
 cd boot
 rename boot.bat boot.debi
 rename vyp.bat vyp.debi
@@ -36,8 +40,8 @@ set /p verzicka=<ver.debidat
 set /p nazevverzicky=<title.debidat
 set notgud=debios
 set notguud=superuser
-set /p uzivatel=<user.debidat
 cd..
+set /p uzivatel=<user.debidat
 cd..
 cd system
 if /i "%uzivatel%" equ "%notguud%" goto notguuuud
@@ -182,6 +186,10 @@ set notepad1=notepad
 set notepad2=write
 set notepad3=word
 
+set colorch1=change color
+set colorch2=color
+set colorch3=color change
+
 set update1=update
 
 if /i "%prikaz%" equ "%vypnou%" goto shu
@@ -253,6 +261,10 @@ if /i "%prikaz%" equ "%clear3%" goto clear
 if /i "%prikaz%" equ "%notepad1%" goto notepad
 if /i "%prikaz%" equ "%notepad2%" goto notepad
 if /i "%prikaz%" equ "%notepad3%" goto notepad
+
+if /i "%prikaz%" equ "%colorch1%" goto colorch
+if /i "%prikaz%" equ "%colorch2%" goto colorch
+if /i "%prikaz%" equ "%colorch3%" goto colorch
 
 if /i "%prikaz%" equ "%update1%" goto update
 
@@ -328,6 +340,10 @@ if NOT "%prikaz%" equ "%zmenajmenaAAA6%" goto neplatny
 if NOT "%prikaz%" equ "%clear1% goto neplatny
 if NOT "%prikaz%" equ "%clear2% goto neplatny
 if NOT "%prikaz%" equ "%clear3% goto neplatny
+
+if NOT "%prikaz%" equ "%colorch1% goto neplatny
+if NOT "%prikaz%" equ "%colorch2% goto neplatny
+if NOT "%prikaz%" equ "%colorch3% goto neplatny
 
 if NOT "%prikaz%" equ "%notepad1% goto neplatny
 if NOT "%prikaz%" equ "%notepad2% goto neplatny
@@ -422,6 +438,7 @@ echo systeminfo - Informations about system (version etc.)
 echo namechange - DebiOS username change
 echo clear - Clears command line
 echo notepad - Notepad for writing files
+echo color change - Menu for color interface change [BETA]
 goto prikaz
 
 :prog
@@ -568,4 +585,41 @@ rename notepad.debiapp notepad.bat  >nul
 start notepad.bat
 echo Starting notepad...
 ping localhost -n 1 >nul
+goto prikaz
+
+:colorch
+echo Select color of user interface:
+CmdMenuSel F1F0 "Blue" "Green" "Aqua" "Red" "Purple" "Yellow" "Gray" "Dark gray" "Light blue" "Light green" "Light aqua" "Light red" "Light purple" "Light yellow" "White"
+if %ERRORLEVEL% == 1 set barva=01
+if %ERRORLEVEL% == 2 set barva=02
+if %ERRORLEVEL% == 3 set barva=03
+if %ERRORLEVEL% == 4 set barva=04
+if %ERRORLEVEL% == 5 set barva=05
+if %ERRORLEVEL% == 6 set barva=06
+if %ERRORLEVEL% == 7 set barva=07
+if %ERRORLEVEL% == 8 set barva=08
+if %ERRORLEVEL% == 9 set barva=09
+if %ERRORLEVEL% == 10 set barva=0A
+if %ERRORLEVEL% == 11 set barva=0B
+if %ERRORLEVEL% == 12 set barva=0C
+if %ERRORLEVEL% == 13 set barva=0D
+if %ERRORLEVEL% == 14 set barva=0E
+if %ERRORLEVEL% == 15 set barva=0F
+color %barva%
+echo Is this right? Y/N
+set /p spravnost=
+set anooooo=Y
+set neee=N
+if "%spravnost%" equ "" set "spravnost=N"
+if /i %spravnost%==%anooooo% goto anobarva
+if /i %spravnost%==%neee% goto colorch
+
+:anobarva
+cd..
+cd data
+del color.debidat
+echo %barva% >>color.debidat
+echo Color changed! Changes appear after reload...
+cd..
+cd system
 goto prikaz

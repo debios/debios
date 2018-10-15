@@ -200,9 +200,9 @@ cd LOG
 echo ##RESTART## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo. >>log%year%.%month%.%day%.log
 cd..
-cd core
-rename col.debi col.bat
-start col.bat
+cd system
+rename system.debi system.bat
+start system.bat
 exit
 
 :updateyes
@@ -227,7 +227,7 @@ move %cd%\system\latest.debidat %cd%\data\info\ver.debidat
 move %cd%\system\latesttitle.debidat %cd%\data\info\title.debidat
 move %cd%\system\latestkernel.debidat %cd%\data\info\kernel.debidat
 del %cd%\system\latest.debidat
-cd core
-rename col.debi col.bat
-start col.bat
+cd system
+rename system.debi system.bat
+start system.bat
 exit
