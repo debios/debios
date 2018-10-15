@@ -56,10 +56,10 @@ download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/tit
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
 cls
 set /p latest=<latest.debidat
-if "%latest%" equ "%verzicka%" del latest.debidat
-if "%latest%" equ "%verzicka%" del latesttitle.debidat
-if "%latest%" equ "%verzicka%" del latestkernel.debidat
-if "%latest%" equ "%verzicka%" goto splashscreen
+if %latest%==%verzicka% del latest.debidat
+if %latest%==%verzicka% del latesttitle.debidat
+if %latest%==%verzicka% del latestkernel.debidat
+if %latest%==%verzicka% goto splashscreen
 set isupdate=true
 cls
 goto splashscreen
@@ -77,10 +77,10 @@ download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/tit
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
 cls
 set /p latest=<latest.debidat
-if "%latest%" equ "%verzicka%" del latest.debidat
-if "%latest%" equ "%verzicka%" del latesttitle.debidat
-if "%latest%" equ "%verzicka%" del latestkernel.debidat
-if "%latest%" equ "%verzicka%" goto splashscreen
+if %latest%==%verzicka% del latest.debidat
+if %latest%==%verzicka% del latesttitle.debidat
+if %latest%==%verzicka% del latestkernel.debidat
+if %latest%==%verzicka% goto splashscreen
 set isupdate=true
 cls
 goto splashscreen
