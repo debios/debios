@@ -89,14 +89,19 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 
 **DebiOS 24.9.18-dev**  
 -Fixed some bugs   
--Added NOTEPAD feature
--Notepad will be downloaded automatically
+-Added NOTEPAD feature  
+-Notepad will be downloaded automatically   
+
+**DebiOS 15.10.18-dev**  
+-You can now change your color user interface with command "color change"     
+-Improved CUI settings  
+-Removed background color settings  
 
 
 ## TODO  
   
 Multimedia functions  
-Fully customizable CUI  
+Fully customizable CUI **✓** 
 Advanced logging  
 Advanced update system **✓**  
 Multilanguage support  
