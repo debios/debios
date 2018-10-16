@@ -105,7 +105,7 @@ echo.
 echo                    Welcome %uzivatel%! 
 echo.
 echo                  Time: %date% %time% 
-if NOT "%isupdate%" equ "true" goto endofss
+if %latest%==%verzicka% goto endofss
 echo.
 echo     An update to version %latest% is available! For update
 echo                   type command "update"!
