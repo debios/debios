@@ -17,7 +17,9 @@ Installation is very easy. Start "**DebiOS Install.exe**" file in directory and 
 
 ## Using DebiOS
 
-You can turn on system by **DebiOS.exe** file. System is automatically turned on after installation. After booting, you can use **DebiOS command line** (use **help** to show list of commands). If you are exiting DebiOS or any of its programs, **please use shutdown command** in command line/program. If you don't use this way, on next boot there can be some glitches in DebiOS ;)
+You can turn on system by **DebiOS.exe** file. System is automatically turned on after installation. After booting, you can use **DebiOS command line** (use **help** to show list of commands). If you are exiting DebiOS or any of its programs, **please use shutdown command** in command line/program. If you don't use this way, on next boot there can be some glitches in DebiOS ;)  
+
+Warning - when you are using non-release builds, bugs may occur, also please don't use update feature, your system will downgrade ;)  
 
 ## Fixing errors
 
