@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=09.12.18-dev
+set verzicinka=10.12.18-dev
 set kernelik=DebiOS One 2018
-set titlik=DebiOS O09.12.18
+set titlik=DebiOS O10.12.18
 
 
 set debiosjmeno=debios
@@ -178,7 +178,7 @@ cd..
 cd..
 if not exist "%cd%\LOG" mkdir LOG
 msg * Installation complete
-start DebiOS.exe
+start DebiOS.bat
 exit
 
 :chyba
