@@ -102,14 +102,17 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Improved startup system  
 
 **DebiOS 09.12.18-dev**  
--Install and startup is now open - no compiler used(system is now fully in batch)        
+-Install and startup is now open - no compiler used(system is now fully in batch)    
+  
+**DebiOS 10.12.18-dev**  
+-Install & startup bugfix  
 
 
 ## TODO  
   
 Multimedia functions  
-Fully customizable CUI **✓** 
-Advanced logging  
+Fully customizable CUI **✓**    
+Advanced logging    
 Advanced update system **✓**  
 Multilanguage support  
 Mouse control support  
