@@ -108,8 +108,8 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Install & startup bugfix  
 
 **DebiOS 08.09.19-dev**  
--Updated what events are being logged - DebiAPPs install, UI color changes etc. 
--Basic bugfixes  
+-Updated what events are being logged - DebiAPPs install, UI color changes etc.   
+-Basic bugfixes   
 TODO: systeminfo->debiapp, advanced log system - you can select what you want to log, more apps/maybe games coming soon-at least one in next update  
 
 ## TODO  
