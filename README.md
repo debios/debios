@@ -19,7 +19,7 @@ Installation is very easy. Start "**DebiOS Install.bat**" file in directory and 
 
 You can turn on system by **DebiOS.bat** file. System is automatically turned on after installation. After booting, you can use **DebiOS command line** (use **help** to show list of commands). If you are exiting DebiOS or any of its programs, **please use shutdown command** in command line/program. If you don't use this way, on next boot there can be some glitches in DebiOS ;)  
 
-Warning - when you are using non-release builds, bugs may occur, also please don't use update feature, your system will downgrade to latest release version ;)  
+Warning - when you are using non-release builds(e.g. modified by yourself or by someone, builds that are not downloaded from this github), bugs may occur, also please don't use update feature, your system will downgrade to latest release version ;)  
 
 ## Fixing errors
 
