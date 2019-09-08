@@ -23,12 +23,22 @@ goto afterinstall
 :notepadmissing
 echo Updating DebiAPPs...
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
 if not exist "%cd%\kalk.debiapp" goto calcmissing
 goto afterinstall
 
 :calcmissing
 echo Updating DebiAPPs...
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
 goto afterinstall
 
 :afterinstall
@@ -67,6 +77,9 @@ goto splashscreen
 
 
 :notguuuud
+cd..
+cd LOG
+echo ##ERROR - Invalid Username - %uzivatel% can't be used as username! Please change it using command "namechange"!## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 set uzivatel=Invalid username
 cd..
 cd system
@@ -361,7 +374,7 @@ goto prikaz
   
 :SU-root
 set /p helso=Password:
-set heslo=flib98855
+set heslo=dsds2019
 if /i %helso%==%heslo% goto suroot
 
 msg * Forbidden... (are you trying to hack system?)
@@ -464,9 +477,15 @@ goto prikaz
 :zmenajmenaA
 cd..
 cd data
-set /p uzivatel=Choose new username: 
+set /p uzivatel=Choose new username:
+set /p prevusername=<user.debidat 
 del user.debidat
 echo %uzivatel% >>user.debidat
+cd..
+cd LOG
+echo ##USERNAME changed from %prevusername% to %uzivatel% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
 echo Done! Restarting...
 pause >nul
 goto res
@@ -617,8 +636,12 @@ if /i %spravnost%==%neee% goto colorch
 :anobarva
 cd..
 cd data
+set /p prevbarva=<color.debidat
 del color.debidat
 echo %barva% >>color.debidat
+cd..
+cd LOG
+echo ##COLOR of UI changed from %prevbarva% to %barva% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo Color changed! Changes appear after reload...
 cd..
 cd system

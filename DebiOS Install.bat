@@ -1,4 +1,4 @@
-::DEBIOS INSTALLER (C)2018 TWFVRCZ
+::DEBIOS INSTALLER (C)2017-2019 TWFVRCZ
 ::ALL RIGHTS RESERVED
 ::YOU CAN MODIFY IT/USE SOME PARTS WITH CREDITS
 
@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=10.12.18-dev
-set kernelik=DebiOS One 2018
-set titlik=DebiOS O10.12.18
+set verzicinka=08.09.19-dev
+set kernelik=DebiOS One 2019
+set titlik=DebiOS O08.09.19
 
 
 set debiosjmeno=debios
