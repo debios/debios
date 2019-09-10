@@ -11,13 +11,15 @@ rename reset.bat reset.debi
 cls
 cd..
 cd core
-ren col.bat col.debi
 ren kalk.bat kalk.debiapp
 ren notepad.bat notepad.debiapp
-ren system.bat system.debi
+ren system.bat system.debiapp
+ren snake.bat snake.debiapp
 cls
 if not exist "%cd%\notepad.debiapp" goto notepadmissing
 if not exist "%cd%\kalk.debiapp" goto calcmissing
+if not exist "%cd%\system.debiapp" goto sysinfomissing
+if not exist "%cd%\snake.debiapp" goto snakemissing
 goto afterinstall
 
 :notepadmissing
@@ -29,6 +31,8 @@ echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%yea
 cd..
 cd core
 if not exist "%cd%\kalk.debiapp" goto calcmissing
+if not exist "%cd%\system.debiapp" goto sysinfomissing
+if not exist "%cd%\snake.debiapp" goto snakemissing
 goto afterinstall
 
 :calcmissing
@@ -37,6 +41,29 @@ download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debia
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\system.debiapp" goto sysinfomissing
+if not exist "%cd%\snake.debiapp" goto snakemissing
+goto afterinstall
+
+:sysinfomissing
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\snake.debiapp" goto snakemissing
+goto afterinstall
+
+:snakemissing
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/snake.debiapp snake.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
 goto afterinstall
@@ -62,13 +89,9 @@ cls
 
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
 echo Loading core...
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
 cls
 set /p latest=<latest.debidat
 if %latest%==%verzicka% del latest.debidat
-if %latest%==%verzicka% del latesttitle.debidat
-if %latest%==%verzicka% del latestkernel.debidat
 if %latest%==%verzicka% goto splashscreen
 set isupdate=true
 cls
@@ -86,13 +109,9 @@ cd system
 cls
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
 echo Loading core...
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/kernel.md latestkernel.debidat  >nul
 cls
 set /p latest=<latest.debidat
 if %latest%==%verzicka% del latest.debidat
-if %latest%==%verzicka% del latesttitle.debidat
-if %latest%==%verzicka% del latestkernel.debidat
 if %latest%==%verzicka% goto splashscreen
 set isupdate=true
 cls
@@ -205,6 +224,15 @@ set colorch3=color change
 
 set update1=update
 
+set about1=about
+set about2=aboutsystem
+set about3=aboutinfo
+
+set snake1=snake
+set snake2=snake game
+set snake3=game
+
+
 if /i "%prikaz%" equ "%vypnou%" goto shu
 if /i "%prikaz%" equ "%vypnou2%" goto shu
 if /i "%prikaz%" equ "%vypnou3%" goto shu
@@ -281,10 +309,18 @@ if /i "%prikaz%" equ "%colorch3%" goto colorch
 
 if /i "%prikaz%" equ "%update1%" goto update
 
+if /i "%prikaz%" equ "%about1%" goto about
+if /i "%prikaz%" equ "%about2%" goto about
+if /i "%prikaz%" equ "%about3%" goto about
+
+if /i "%prikaz%" equ "%snake1%" goto snake
+if /i "%prikaz%" equ "%snake2%" goto snake
+if /i "%prikaz%" equ "%snake3%" goto snake
+
 if "%prikaz%" equ "" set "prikaz=neplatny"
 if "%prikaz%" equ " " set "prikaz=neplatny"
 if "%prikaz%" equ "  " set "prikaz=neplatny"
-if /i %prikaz% equ %neplatny% goto neplatny
+if /i "%prikaz%" equ "%neplatny%" goto neplatny
 
 
 
@@ -364,6 +400,14 @@ if NOT "%prikaz%" equ "%notepad3% goto neplatny
 
 if NOT "%prikaz%" equ "%update1%" goto neplatny
 
+if NOT "%prikaz%" equ "%about1%" goto neplatny
+if NOT "%prikaz%" equ "%about2%" goto neplatny
+if NOT "%prikaz%" equ "%about3%" goto neplatny
+
+if NOT "%prikaz%" equ "%snake1%" goto neplatny
+if NOT "%prikaz%" equ "%snake2%" goto neplatny
+if NOT "%prikaz%" equ "%snake3%" goto neplatny
+
 
 echo Unknown command!
 goto prikaz
@@ -393,17 +437,39 @@ rename reset.debi reset.bat     >nul
 cd..
 cd core
 rename kalk.debiapp kalk.bat      >nul
-rename system.debi system.bat     >nul
+rename system.debiapp system.bat     >nul
+rename snake.debiapp snake.bat     >nul
 echo System unlocked! Glitches may appear... 
 goto prikaz
                             
 :sysinfo
 cd..
 cd core
-cls
-rename system.debi system.bat      >nul
-call system.bat
-exit
+if not exist "%cd%\system.debiapp" if not exist "%cd%\system.bat" goto DebiAppSysinfomissing
+if exist "%cd%\system.bat" rename system.bat system.debiapp
+:DebiAppSysinfoyes
+rename system.debiapp system.bat  >nul
+start system.bat
+echo Starting SystemInfo...
+ping localhost -n 1 >nul
+goto prikaz
+:DebiAppSysinfomissing
+echo SystemInfo not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\system.debiapp" goto DebiAppSysinfomissing2
+echo SystemInfo successfully installed!
+goto DebiAppSysinfoyes
+:DebiAppSysinfomissing2
+echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+
 
 :shu
 cls
@@ -452,6 +518,8 @@ echo namechange - DebiOS username change
 echo clear - Clears command line
 echo notepad - Notepad for writing files
 echo color change - Menu for color interface change [BETA]
+echo snake - Snake game
+echo about - About System & Special thanks
 goto prikaz
 
 :prog
@@ -461,17 +529,75 @@ pause >nul
 goto prikaz
 
 :market
-start www.debimarket.webnode.cz
-pause >nul
 goto prikaz
 
 :kalku
 cd..
 cd core
+if not exist "%cd%\kalk.debiapp" if not exist "%cd%\kalk.bat" goto DebiAppKalkmissing
+if exist "%cd%\kalk.bat" rename kalk.bat kalk.debiapp
+:DebiAppKalkyes
 rename kalk.debiapp kalk.bat  >nul
 start kalk.bat
-echo Starting calculator...
+echo Starting Calculator...
 ping localhost -n 1 >nul
+goto prikaz
+:DebiAppKalkmissing
+echo Calculator not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\kalk.debiapp" goto DebiAppKalkmissing2
+echo Calculator successfully installed!
+goto DebiAppKalkyes
+:DebiAppKalkmissing2
+echo Sorry, we were unable to download Calculator. You can try to download it for yourself - just place kalk.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+
+
+
+
+
+:tetris
+cd..
+cd core
+rename tetris.debiapp tetris.bat  >nul
+start tetris.bat
+echo Starting Tetris...
+ping localhost -n 1 >nul
+goto prikaz
+
+:snake
+cd..
+cd core
+if not exist "%cd%\snake.debiapp" if not exist "%cd%\snake.bat" goto DebiAppSnakemissing
+if exist "%cd%\snake.bat" rename snake.bat snake.debiapp
+:DebiAppSnakeyes
+rename snake.debiapp snake.bat  >nul
+start snake.bat
+echo Starting Snake...
+ping localhost -n 1 >nul
+goto prikaz
+:DebiAppSnakemissing
+echo Snake not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/snake.debiapp snake.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\snake.debiapp" goto DebiAppSnakemissing2
+echo Snake successfully installed!
+goto DebiAppSnakeyes
+:DebiAppSnakemissing2
+echo Sorry, we were unable to download Snake. You can try to download it for yourself - just place snake.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
 
 :zmenajmenaA
@@ -513,12 +639,10 @@ cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiins systeminfo.debi
 cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp
 cls
 echo Updating, please wait...
 echo.
@@ -558,10 +682,6 @@ del program.debi
 del program.bat
 cd..
 cd core
-del kalk.debiapp
-del system.debi
-del kalk.bat
-del system.bat
 cls 
 echo Updating, please wait...
 echo.
@@ -570,12 +690,9 @@ echo Deleting old files...
 echo Installing new files...
 cd..
 move %cd%\system\updatefiles\program.debi %cd%\system\
-move %cd%\system\updatefiles\systeminfo.debi %cd%\core\
-move %cd%\system\updatefiles\kalk.debiapp %cd%\core\
 move %cd%\system\updatefiles\vyp.debi %cd%\boot\
 move %cd%\system\updatefiles\boot.debi %cd%\boot\
 move %cd%\system\updatefiles\reset.debi %cd%\boot\
-rename %cd%\core\systeminfo.debi system.debi
 cls 
 echo Updating, please wait...
 echo.
@@ -600,11 +717,33 @@ goto prikaz
 :notepad
 cd..
 cd core
+if not exist "%cd%\notepad.debiapp" if not exist "%cd%\notepad.bat" goto DebiAppNotepadmissing
+if exist "%cd%\notepad.bat" rename notepad.bat notepad.debiapp
+:DebiAppNotepadyes
 rename notepad.debiapp notepad.bat  >nul
 start notepad.bat
 echo Starting notepad...
 ping localhost -n 1 >nul
 goto prikaz
+:DebiAppNotepadmissing
+echo Notepad not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\notepad.debiapp" goto DebiAppNotepadmissing2
+echo Notepad successfully installed!
+goto DebiAppNotepadyes
+:DebiAppNotepadmissing2
+echo Sorry, we were unable to download notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+
+
+
 
 :colorch
 echo Select color of user interface:
@@ -646,3 +785,22 @@ echo Color changed! Changes appear after reload...
 cd..
 cd system
 goto prikaz
+
+:about
+cls
+echo (c)2014-2019 DebiOS Software Development Studio
+echo DebiOS version: %verzicka%
+echo Based on DebiOS One %year%
+echo.
+echo Website: http://snakercz.github.io
+echo. 
+echo External modules used:
+echo   - cmdmenusel.exe
+echo   - download.exe
+echo.
+echo Special thanks:
+echo   - Snake by Pawel Srokosz (psrok1)
+echo.
+echo Press any key to return to home screen...
+pause >nul
+goto splashscreen

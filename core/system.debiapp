@@ -63,18 +63,12 @@ echo Click ENTER to return to the system
 PAUSE
 cd..
 cd core
-rename col.debi col.bat
-call col.bat
-call rename system.bat system.debi
-exit
+echo Shutting down...
+call exit
+call rename system.bat system.debiapp
 
 
 :neee
-cls
-echo Click ENTER to return to the system
-PAUSE
-rename col.debi col.bat
-call col.bat
-call rename system.bat system.debi
-exit
-
+echo Shutting down...
+call exit
+call rename system.bat system.debiapp

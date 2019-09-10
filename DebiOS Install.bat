@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=08.09.19-dev
+set verzicinka=10.9.19-dev
 set kernelik=DebiOS One 2019
-set titlik=DebiOS O08.09.19
+set titlik=DebiOS O10.9.19
 
 
 set debiosjmeno=debios
@@ -116,7 +116,7 @@ cd..
 if not exist "%mypath:~0,-1%\core\" mkdir core
 if not exist "%mypath:~0,-1%\system\" mkdir system
 cd core
-if not exist system.debiins set systeminfo=1
+if not exist system.debiapp set systeminfo=1
 cd..
 cd system
 if not exist program.debiins set program=1
@@ -158,7 +158,6 @@ goto fzdrojgud
 
 :fzdrojgud
 cd core
-rename system.debiins system.debi
 echo Writing color...
 cd..
 cd data
@@ -279,7 +278,7 @@ set insb=0
 goto vypis
 
 :chybasi
-echo Missing file - /core/system.debiins
+echo Missing file - /core/system.debiapp
 set systeminfo=0
 goto vypis
 
