@@ -4,7 +4,7 @@
 
 
 # About
-**DebiOS** is simulation of operating system, developed completely in **batch**. Whole system is based on few files that interact with each others. This simulator DOESN'T affect your computer, it CAN'T communicate with internet, so don't worry about losing data, infecting your computer, etc.
+**DebiOS** is simulation of operating system, developed completely in **batch**. Whole system is based on few files that interact with each others. This simulator DOESN'T affect your computer data more than it should, so don't worry about losing data, infecting your computer, etc.
 
 ## History of DebiOS  
 First version of **DebiOS** (beta14.3.29a, lost) was created on *March, 29 2014*. It was simple and only things that it could was boot, shutdown, show time, username and date and... that was all. It had only **12kB** and it was written completely in batch. All texts were in *czech* language and it was kinda boring. Last update was in **October, 2014** and then we started creating new system from the scratch. We called it "**One**" and previous versions kernel were called "**OpenTail**". But development was stopped and for another
@@ -19,7 +19,7 @@ Installation is very easy. Start "**DebiOS Install.bat**" file in directory and 
 
 You can turn on system by **DebiOS.bat** file. System is automatically turned on after installation. After booting, you can use **DebiOS command line** (use **help** to show list of commands). If you are exiting DebiOS or any of its programs, **please use shutdown command** in command line/program. If you don't use this way, on next boot there can be some glitches in DebiOS ;)  
 
-Warning - when you are using non-release builds, bugs may occur, also please don't use update feature, your system will downgrade to latest release version ;)  
+Warning - when you are using non-release builds(e.g. modified by yourself or by someone, builds that are not downloaded from this github), bugs may occur, also please don't use update feature, your system will downgrade to latest release version ;)  
 
 ## Fixing errors
 
@@ -107,9 +107,22 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 **DebiOS 10.12.18-dev**  
 -Install & startup bugfix  
 
+**DebiOS 08.09.19-dev**  
+-Updated what events are being logged - DebiAPPs install, UI color changes etc.   
+-Basic bugfixes   
+TODO: systeminfo->debiapp, advanced log system - you can select what you want to log, more apps/maybe games coming soon-at least one in next update  
+
+**DebiOS 10.9.19-dev**  
+-Bugfix - commands with spaces no longer crashes system   
+-Some more bugfixes  
+-About command  
+-Added "Snake" game - Command "snake" or "snake game"  
+-Systeminfo is now DebiAPP (DebiAPPs are updated separately on every start of system)  
+-When starting debiapps, the system checks if they are in core folder, if not, it tries to download them  
+
 
 ## TODO  
-  
+
 Multimedia functions  
 Fully customizable CUI **✓**    
 Advanced logging    
