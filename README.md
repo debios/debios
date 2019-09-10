@@ -112,6 +112,15 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -Basic bugfixes   
 TODO: systeminfo->debiapp, advanced log system - you can select what you want to log, more apps/maybe games coming soon-at least one in next update  
 
+**DebiOS 10.9.19-dev**  
+-Bugfix - commands with spaces no longer crashes system   
+-Some more bugfixes  
+-About command  
+-Added "Snake" game - Command "snake" or "snake game"  
+-Systeminfo is now DebiAPP (DebiAPPs are updated separately on every start of system)  
+-When starting debiapps, the system checks if they are in core folder, if not, it tries to download them  
+
+
 ## TODO  
 
 Multimedia functions  
