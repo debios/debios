@@ -447,12 +447,7 @@ cd..
 cd core
 if not exist "%cd%\system.debiapp" if not exist "%cd%\system.bat" goto DebiAppSysinfomissing
 if exist "%cd%\system.bat" rename system.bat system.debiapp
-:DebiAppSysinfoyes
-rename system.debiapp system.bat  >nul
-start system.bat
-echo Starting SystemInfo...
-ping localhost -n 1 >nul
-goto prikaz
+goto DebiAppSysinfoyes
 :DebiAppSysinfomissing
 echo SystemInfo not found! Trying to update from internet...
 echo.
@@ -469,7 +464,12 @@ goto DebiAppSysinfoyes
 :DebiAppSysinfomissing2
 echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
-
+:DebiAppSysinfoyes
+rename system.debiapp system.bat  >nul
+start system.bat
+echo Starting SystemInfo...
+ping localhost -n 1 >nul
+goto prikaz
 
 :shu
 cls
@@ -519,7 +519,7 @@ echo clear - Clears command line
 echo notepad - Notepad for writing files
 echo color change - Menu for color interface change [BETA]
 echo snake - Snake game
-echo about - About System & Special thanks
+echo about - About System and Special thanks
 goto prikaz
 
 :prog
@@ -536,12 +536,7 @@ cd..
 cd core
 if not exist "%cd%\kalk.debiapp" if not exist "%cd%\kalk.bat" goto DebiAppKalkmissing
 if exist "%cd%\kalk.bat" rename kalk.bat kalk.debiapp
-:DebiAppKalkyes
-rename kalk.debiapp kalk.bat  >nul
-start kalk.bat
-echo Starting Calculator...
-ping localhost -n 1 >nul
-goto prikaz
+goto DebiAppKalkyes
 :DebiAppKalkmissing
 echo Calculator not found! Trying to update from internet...
 echo.
@@ -558,7 +553,12 @@ goto DebiAppKalkyes
 :DebiAppKalkmissing2
 echo Sorry, we were unable to download Calculator. You can try to download it for yourself - just place kalk.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
-
+:DebiAppKalkyes
+rename kalk.debiapp kalk.bat  >nul
+start kalk.bat
+echo Starting Calculator...
+ping localhost -n 1 >nul
+goto prikaz
 
 
 
@@ -577,12 +577,7 @@ cd..
 cd core
 if not exist "%cd%\snake.debiapp" if not exist "%cd%\snake.bat" goto DebiAppSnakemissing
 if exist "%cd%\snake.bat" rename snake.bat snake.debiapp
-:DebiAppSnakeyes
-rename snake.debiapp snake.bat  >nul
-start snake.bat
-echo Starting Snake...
-ping localhost -n 1 >nul
-goto prikaz
+goto DebiAppSnakeyes
 :DebiAppSnakemissing
 echo Snake not found! Trying to update from internet...
 echo.
@@ -598,6 +593,12 @@ echo Snake successfully installed!
 goto DebiAppSnakeyes
 :DebiAppSnakemissing2
 echo Sorry, we were unable to download Snake. You can try to download it for yourself - just place snake.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+:DebiAppSnakeyes
+rename snake.debiapp snake.bat  >nul
+start snake.bat
+echo Starting Snake...
+ping localhost -n 1 >nul
 goto prikaz
 
 :zmenajmenaA
@@ -719,12 +720,7 @@ cd..
 cd core
 if not exist "%cd%\notepad.debiapp" if not exist "%cd%\notepad.bat" goto DebiAppNotepadmissing
 if exist "%cd%\notepad.bat" rename notepad.bat notepad.debiapp
-:DebiAppNotepadyes
-rename notepad.debiapp notepad.bat  >nul
-start notepad.bat
-echo Starting notepad...
-ping localhost -n 1 >nul
-goto prikaz
+goto DebiAppNotepadyes
 :DebiAppNotepadmissing
 echo Notepad not found! Trying to update from internet...
 echo.
@@ -741,7 +737,12 @@ goto DebiAppNotepadyes
 :DebiAppNotepadmissing2
 echo Sorry, we were unable to download notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
-
+:DebiAppNotepadyes
+rename notepad.debiapp notepad.bat  >nul
+start notepad.bat
+echo Starting notepad...
+ping localhost -n 1 >nul
+goto prikaz
 
 
 

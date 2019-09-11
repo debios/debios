@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=10.9.19-dev
+set verzicinka=11.9.19-dev
 set kernelik=DebiOS One 2019
-set titlik=DebiOS O10.9.19
+set titlik=DebiOS O11.9.19
 
 
 set debiosjmeno=debios
