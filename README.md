@@ -120,6 +120,10 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -Systeminfo is now DebiAPP (DebiAPPs are updated separately on every start of system)  
 -When starting debiapps, the system checks if they are in core folder, if not, it tries to download them  
 
+**DebiOS 11.9.19-dev**  
+-Fixed display error in help command  
+-DebiAPPs check system bugfix  
+  
 
 ## TODO  
 
