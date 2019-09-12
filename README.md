@@ -124,7 +124,9 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -Fixed display error in help command  
 -DebiAPPs check system bugfix  
   
-
+**DebiOS 12.9.19-dev**   
+-Update system bugfixes    
+  
 ## TODO  
 
 Multimedia functions  
