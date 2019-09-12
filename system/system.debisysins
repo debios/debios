@@ -88,6 +88,8 @@ cls
 
 
 download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
+download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/latestkernel.md latestkernel.debidat  >nul
 echo Loading core...
 cls
 set /p latest=<latest.debidat
