@@ -65,7 +65,10 @@ If you have suspicion that DebiOS is not working properly, such as missing color
 -New filesystem (.debi, .debiins, .debisys) *RenEngine 1.0*  
 -Systeminfo  
 -Improved calculator  
-
+  
+**DebiOS 24.4.17U**  
+-unlocking    
+   
 **DebiOS 4.5.17U**  
 -Some changes in UI  
 -Username feature  
