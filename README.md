@@ -126,9 +126,13 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 **DebiOS 11.9.19-dev**  
 -Fixed display error in help command  
 -DebiAPPs check system bugfix  
+-Known bug: Updating from this version breaks entire system  
   
 **DebiOS 12.9.19-dev**   
 -Update system bugfixes    
+  
+**DebiOS 01.2.20-dev**  
+-Installation bugfixes
   
 ## TODO  
 
