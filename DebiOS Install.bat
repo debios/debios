@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=11.9.19-dev
-set kernelik=DebiOS One 2019
-set titlik=DebiOS O11.9.19
+set verzicinka=01.2.20-dev
+set kernelik=DebiOS One 2020
+set titlik=DebiOS O01.2.20
 
 
 set debiosjmeno=debios
@@ -37,7 +37,7 @@ if "%uzivatel%" equ "1" goto chyba
 goto jmenogood
 
 :takhletonepude
-msg * Uživatelské jméno nesmí být prázdné!
+msg * UÅ¾ivatelskÃ© jmÃ©no nesmÃ­ bÃ½t prÃ¡zdnÃ©!
 cls
 goto jmeno
 
@@ -165,7 +165,7 @@ echo %barva%>>color.debidat
 echo Click ENTER to complete installation...
 pause >nul
 cd.. 
-move %mypath%\system\insb.bat %mypath%
+move "%mypath:~0,-1%\system\insb.bat" "%mypath:~0,-1%"
 rename insb.bat DebiOS.bat
 cd data
 mkdir info
