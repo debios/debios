@@ -199,10 +199,10 @@ exit
 
 :updateyes
 cd..
-move %cd%\system\updatefiles\system.debi %cd%\system\system.debi
-del %cd%\system\updatefiles\download.exe
-rmdir %cd%\system\updatefiles\ /q
-del %cd%\data\updateprogress.debidat
+move "%cd%\system\updatefiles\system.debi "%cd%\system\system.debi"
+del "%cd%\system\updatefiles\download.exe"
+rmdir "%cd%\system\updatefiles\" /q
+del "%cd%\data\updateprogress.debidat"
 cd LOG
 echo ##STARTUP## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 echo ##UPDATE## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -215,10 +215,10 @@ del title.debidat
 del kernel.debidat
 cd..
 cd..
-move %cd%\system\latest.debidat %cd%\data\info\ver.debidat
-move %cd%\system\latesttitle.debidat %cd%\data\info\title.debidat
-move %cd%\system\latestkernel.debidat %cd%\data\info\kernel.debidat
-del %cd%\system\latest.debidat
+move "%cd%\system\latest.debidat" "%cd%\data\info\ver.debidat"
+move "%cd%\system\latesttitle.debidat" "%cd%\data\info\title.debidat"
+move "%cd%\system\latestkernel.debidat" "%cd%\data\info\kernel.debidat"
+del "%cd%\system\latest.debidat"
 cd system
 rename system.debi system.bat
 start system.bat

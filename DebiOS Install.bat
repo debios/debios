@@ -1,4 +1,4 @@
-::DEBIOS INSTALLER (C)2017-2019 TWFVRCZ
+::DEBIOS INSTALLER (C)2017-2020 TWFVRCZ
 ::ALL RIGHTS RESERVED
 ::YOU CAN MODIFY IT/USE SOME PARTS WITH CREDITS
 
@@ -6,9 +6,9 @@
 
 SET mypath=%~dp0
 
-set verzicinka=01.2.20-dev
+set verzicinka=02.2.20-dev
 set kernelik=DebiOS One 2020
-set titlik=DebiOS O01.2.20
+set titlik=DebiOS O02.2.20
 
 
 set debiosjmeno=debios

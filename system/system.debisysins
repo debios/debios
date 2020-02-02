@@ -1,4 +1,8 @@
 @echo off
+
+SET mypath=%~dp0
+::%mypath:~0,-1%
+
 cd..
 cd data
 set /p barva=<color.debidat
@@ -630,7 +634,7 @@ echo Updating, please wait...
 echo.
 echo Downloading latest files...
 mkdir updatefiles
-copy download.exe %cd%\updatefiles\download.exe
+copy download.exe "%cd%\updatefiles\download.exe"
 cd updatefiles
 download https://raw.githubusercontent.com/SnakerCZ/debios/master/system/program.debiins program.debi
 cls
@@ -692,10 +696,12 @@ echo Downloading latest files...
 echo Deleting old files...
 echo Installing new files...
 cd..
-move %cd%\system\updatefiles\program.debi %cd%\system\
-move %cd%\system\updatefiles\vyp.debi %cd%\boot\
-move %cd%\system\updatefiles\boot.debi %cd%\boot\
-move %cd%\system\updatefiles\reset.debi %cd%\boot\
+echo %cd%
+pause
+move "%cd%\system\updatefiles\program.debi" "%cd%\system\"
+move "%cd%\system\updatefiles\vyp.debi" "%cd%\boot\"
+move "%cd%\system\updatefiles\boot.debi" "%cd%\boot\"
+move "%cd%\system\updatefiles\reset.debi" "%cd%\boot\"
 cls 
 echo Updating, please wait...
 echo.
