@@ -201,7 +201,7 @@ if %ERRORLEVEL% == 13 set barva=0D
 if %ERRORLEVEL% == 14 set barva=0E
 if %ERRORLEVEL% == 15 set barva=0F
 color %barva%
-echo        Is this color right? Y/N
+echo         Is this color right? Y/N
 set /p spravnost=
 set anooooo=Y
 set neee=N
