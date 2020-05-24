@@ -6,28 +6,75 @@
 
 SET mypath=%~dp0
 
-set verzicinka=02.2.20-dev
+
+::VER INFO
+set verzicinka=25.5.20-dev
 set kernelik=DebiOS One 2020
-set titlik=DebiOS O02.2.20
+set titlik=DebiOS O25.5.20
 
+::RESIZE WINDOW
+mode con: cols=120 lines=30
 
+::FORBIDDEN NAMES
 set debiosjmeno=debios
 set superuserjm=superuser
 
-title DebiOS Installation
-echo Welcome to first boot of DebiOS! You
-echo must set some settings before using.
-echo Click ENTER to continue.
-pause >nul
+title DebiOS Installation    
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 1 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        Welcome to the first boot of DebiOS! 
+echo.
+echo        We need to set some settings before you start using it. 
+echo        This setup program will prepare DebiOS to run on your computer.
+echo.
+echo         - Press ENTER to continue
+echo         - Close the window to quit the setup
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.       DebiOS is still in development. You are now using a public beta. & pause >nul
+
+
+
+
 :jmeno
 cls
-color 07
+color 07   
 set "uzivatel=DebiOS%random%"
-set /p uzivatel=Select username: 
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        First of all, how we are supposed to call you? 
+echo.
+echo        Please enter your username and press ENTER to continue:
+echo. 
+set /p uzivatel=
 if "%uzivatel%" equ " " set "uzivatel=DebiOS%random%"
 if "%uzivatel%" equ "" set "uzivatel=DebiOS%random%"
 if "%uzivatel%" equ "%debiosjmeno%" goto jmenoS
-if "%uzivatel%" equ "%superuserjm%" goto jmenoS
+if "%uzivatel%" equ "%superuserjm%" goto jmenoS   
 if "%uzivatel%" equ "random" goto randomjmeno
 if "%uzivatel%" equ "null" set "uzivatel=1"
 if "%uzivatel%" equ "con" set "uzivatel=1"
@@ -36,17 +83,42 @@ if "%uzivatel%" equ "1" goto chyba
 
 goto jmenogood
 
-:takhletonepude
-msg * Uživatelské jméno nesmí být prázdné!
-cls
-goto jmeno
-
 :randomjmeno
 set uzivatel=debiuser%random%
 goto jmenogood
 
 :jmenoS
-msg * This username is not allowed!
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        You can't use this username! Please select different one.
+echo.
+echo         - Press ENTER to select the username again
+echo.
+echo        TIP: If you leave the username blank, the system will asign you random username!    
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.       ERR: BAD_USERNAME & pause >nul
 cls
 goto jmeno
 
@@ -56,21 +128,61 @@ goto datafu
 
 :datafu
 cd data
-echo Writing...
-echo %uzivatel% >> user.debidat
+cls
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        Writing...
 ping localhost >nul
-echo Done! Click ENTER for continuing...
+echo %uzivatel% >> user.debidat
+echo.
+echo        Done! Press ENTER to continue...
+echo.
+echo.  
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.        & pause >nul
 
-pause >nul
 :barva
 cls
 color 07
-echo Now set color of user interface!
-echo TIP: Color can be changed later!
-echo Select color of text:
 cd..
 cd system
-CmdMenuSel F1F0 "Blue" "Green" "Aqua" "Red" "Purple" "Yellow" "Gray" "Dark gray" "Light blue" "Light green" "Light aqua" "Light red" "Light purple" "Light yellow" "White"
+
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 3 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        Now, we have to select color of your user interface!
+echo.
+echo        TIP: The color can be changed later in the system!
+echo.
+echo        Please select the color of text:  
+echo.
+CmdMenuSel F1F0 "        Blue" "        Green" "        Aqua" "        Red" "        Purple" "        Yellow" "        Gray" "        Dark gray" "        Light blue" "        Light green" "        Light aqua" "        Light red" "        Light purple" "        Light yellow" "        White"
+
 
 :barvatest1
 if %ERRORLEVEL% == 1 set barva=01
@@ -89,7 +201,7 @@ if %ERRORLEVEL% == 13 set barva=0D
 if %ERRORLEVEL% == 14 set barva=0E
 if %ERRORLEVEL% == 15 set barva=0F
 color %barva%
-echo Is this right? Y/N
+echo        Is this color right? Y/N
 set /p spravnost=
 set anooooo=Y
 set neee=N
@@ -106,7 +218,22 @@ cd..
 if not exist "%mypath:~0,-1%\boot\" mkdir boot
 goto fbootgud
 
+
 :fbootgud
+cls
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 4 of 5)
+echo        ______________________________________________________________________________________________________
+echo.      
+echo.
+echo        Finishing installation... 
+echo.
+echo        * Checking files errors
+ping localhost -n 2 >nul
+
 cd boot
 
 if not exist vyp.debiins set vypnout=1
@@ -137,7 +264,9 @@ if /i "%srn%"=="1" goto chyba
 if /i "%insb%"=="1" goto chyba
 if /i "%ire%"=="1" goto chyba
 
-
+echo        * COMPLETE!
+echo.
+echo        * Applying iRE filesystem changes
 :pohodkab
 cd boot
 rename vyp.debiins vyp.debi
@@ -155,14 +284,41 @@ rename system.debisysins system.debi
 cd..
 goto fzdrojgud
 
-
+  
 :fzdrojgud
+echo        * COMPLETE!
+echo.    
 cd core
-echo Writing color...
+echo        * Saving configuration
 cd..
 cd data
 echo %barva%>>color.debidat
-echo Click ENTER to complete installation...
+echo        * COMPLETE!
+echo.
+echo.
+
+cls
+
+echo.
+echo        ______________________________________________________________________________________________________
+echo.      
+echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 5 of 5)
+echo        ______________________________________________________________________________________________________
+echo.
+echo.
+echo        Finishing installation...
+echo.
+echo        * Checking files errors
+echo        * COMPLETE!
+echo.
+echo        * Applying iRE filesystem changes
+echo        * COMPLETE!
+echo.
+echo        * Saving configuration
+echo        * COMPLETE!
+echo.
+echo.
+echo         - Press ENTER to complete installation...
 pause >nul
 cd.. 
 move "%mypath:~0,-1%\system\insb.bat" "%mypath:~0,-1%"
@@ -176,7 +332,7 @@ echo %verzicinka%>>ver.debidat
 cd..
 cd..
 if not exist "%cd%\LOG" mkdir LOG
-msg * Installation complete
+msg * Installation complete!
 start DebiOS.bat
 exit
 
