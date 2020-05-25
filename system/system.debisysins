@@ -1,8 +1,15 @@
 @echo off
+title DebiOS
+
+::RESIZE
+mode con: cols=120 lines=30
+
 
 SET mypath=%~dp0
 ::%mypath:~0,-1%
 
+
+::iRE FS WORKS
 cd..
 cd data
 set /p barva=<color.debidat
@@ -20,58 +27,67 @@ ren notepad.bat notepad.debiapp
 ren system.bat system.debiapp
 ren snake.bat snake.debiapp
 cls
-if not exist "%cd%\notepad.debiapp" goto notepadmissing
-if not exist "%cd%\kalk.debiapp" goto calcmissing
-if not exist "%cd%\system.debiapp" goto sysinfomissing
-if not exist "%cd%\snake.debiapp" goto snakemissing
+
+::DEBIAPP CHECK
+:debiapp_startup_check
+if not exist "%cd%\notepad.debiapp" goto debiapp_startup_notepadmissing
+if not exist "%cd%\kalk.debiapp" goto debiapp_startup_calcmissing
+if not exist "%cd%\system.debiapp" goto debiapp_startup_sysinfomissing
+if not exist "%cd%\snake.debiapp" goto debiapp_startup_snakemissing
+
+::IF ALL EXIST, GOTO AFTERINSTALL
 goto afterinstall
 
-:notepadmissing
+
+::DEBIAPP UPDATING
+
+
+:debiapp_startup_notepadmissing
 echo Updating DebiAPPs...
+echo downloading >notepad.debiapp
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-if not exist "%cd%\kalk.debiapp" goto calcmissing
-if not exist "%cd%\system.debiapp" goto sysinfomissing
-if not exist "%cd%\snake.debiapp" goto snakemissing
-goto afterinstall
+goto debiapp_startup_check
 
-:calcmissing
+:debiapp_startup_calcmissing
 echo Updating DebiAPPs...
+echo downloading >kalk.debiapp
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-if not exist "%cd%\system.debiapp" goto sysinfomissing
-if not exist "%cd%\snake.debiapp" goto snakemissing
-goto afterinstall
+goto debiapp_startup_check
 
-:sysinfomissing
+:debiapp_startup_sysinfomissing
 echo Updating DebiAPPs...
+echo downloading >system.debiapp
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-if not exist "%cd%\snake.debiapp" goto snakemissing
-goto afterinstall
+goto debiapp_startup_check
 
-:snakemissing
+:debiapp_startup_snakemissing
 echo Updating DebiAPPs...
+echo downloading >snake.debiapp
 download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-goto afterinstall
+goto debiapp_startup_check
 
+
+::UPDATE CONTROL AND USERNAME PARSING
 :afterinstall
 cls
 cd..
@@ -97,14 +113,14 @@ download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/lat
 echo Loading core...
 cls
 set /p latest=<latest.debidat
-if %latest%==%verzicka% del latest.debidat
-if %latest%==%verzicka% goto splashscreen
+if "%latest%"=="%verzicka%" del latest.debidat
+if "%latest%"=="%verzicka%" goto splashscreen
 set isupdate=true
 cls
 goto splashscreen
 
 
-
+::USERNAME PARSED WRONG
 :notguuuud
 cd..
 cd LOG
@@ -117,13 +133,17 @@ download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver
 echo Loading core...
 cls
 set /p latest=<latest.debidat
-if %latest%==%verzicka% del latest.debidat
-if %latest%==%verzicka% goto splashscreen
+if "%latest%"=="%verzicka%" del latest.debidat
+if "%latest%"=="%verzicka%" goto splashscreen
 set isupdate=true
 cls
 goto splashscreen
 
+
+::MAIN SCREEN
+
 :splashscreen
+mode con: cols=120 lines=30
 cls
 echo ##################################################################
 echo.
@@ -142,8 +162,11 @@ echo                      %nazevverzicky%
 echo.
 echo                    Welcome %uzivatel%! 
 echo.
-echo                  Time: %date% %time% 
-if %latest%==%verzicka% goto endofss
+echo                  Time: %date% %time%
+
+::UPDATE CHECK (IF EMPTY, INTERNET NOT WORKING)
+if "%latest%" equ [] goto endofss 
+if "%latest%"=="%verzicka%" goto endofss
 echo.
 echo     An update to version %latest% is available! For update
 echo                   type command "update"!
@@ -151,9 +174,14 @@ echo                   type command "update"!
 echo.                                                                                                             
 echo ##################################################################
 echo DebiOS Command line: To get list of commands type "help"! 
+
+::COMMAND LINE
+
 :prikaz
 set prikaz=0
 set /p prikaz=DebiOS Command line: 
+
+::COMMANDS
 
 set vypnou=vypnout
 set vypnou2=stop
@@ -188,8 +216,8 @@ set kalku3=calculator
 set kalku4=calc
 set kalku5=kalk
 set kalku6=pocitat
-set kalku7=kolik
-set kalku8=kalkulaèka
+set kalku7=howmuch
+set kalku8=how much
  
 set prog=program
 set prog2=spustit
@@ -202,7 +230,7 @@ set market5=debimarket
 set market6=obchod
 
 set sysinfo=systeminfo
-set sysinfo2=info o systemu
+set sysinfo2=sysinfo
 set sysinfo3=verze
 set sysinfo4=version
 set sysinfo5=info
@@ -214,7 +242,7 @@ set zmenajmenaAAA=namechange
 set zmenajmenaAAA2=name change
 set zmenajmenaAAA3=nickchange
 set zmenajmenaAAA4=nick change
-set zmenajmenaAAA5=zmenit nick
+set zmenajmenaAAA5=username
 set zmenajmenaAAA6=zmena jmena
 
 set clear1=vycistit
@@ -228,6 +256,8 @@ set notepad3=word
 set colorch1=change color
 set colorch2=color
 set colorch3=color change
+set colorch4=colorchange
+set colorch5=changecolor
 
 set update1=update
 
@@ -239,6 +269,7 @@ set snake1=snake
 set snake2=snake game
 set snake3=game
 
+::COMMAND CHECK
 
 if /i "%prikaz%" equ "%vypnou%" goto shu
 if /i "%prikaz%" equ "%vypnou2%" goto shu
@@ -250,14 +281,14 @@ if /i "%prikaz%" equ "%restar%" goto res
 if /i "%prikaz%" equ "%restar2%" goto res
 if /i "%prikaz%" equ "%restar3%" goto res
 
-if /i "%prikaz%" equ "%kalku%" goto kalku
-if /i "%prikaz%" equ "%kalku2%" goto kalku
-if /i "%prikaz%" equ "%kalku3%" goto kalku
-if /i "%prikaz%" equ "%kalku4%" goto kalku
-if /i "%prikaz%" equ "%kalku5%" goto kalku
-if /i "%prikaz%" equ "%kalku6%" goto kalku
-if /i "%prikaz%" equ "%kalku7%" goto kalku
-if /i "%prikaz%" equ "%kalku8%" goto kalku
+if /i "%prikaz%" equ "%kalku%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku2%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku3%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku4%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku5%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku6%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku7%" goto debiapp_start_calc
+if /i "%prikaz%" equ "%kalku8%" goto debiapp_start_calc
 
 if /i "%prikaz%" equ "%cas%" goto tim
 if /i "%prikaz%" equ "%cas2%" goto tim
@@ -286,12 +317,12 @@ if /i "%prikaz%" equ "%market4%" goto market
 if /i "%prikaz%" equ "%market5%" goto market
 if /i "%prikaz%" equ "%market6%" goto market 
 
-if /i "%prikaz%" equ "%sysinfo%" goto sysinfo
-if /i "%prikaz%" equ "%sysinfo2%" goto sysinfo
-if /i "%prikaz%" equ "%sysinfo3%" goto sysinfo
-if /i "%prikaz%" equ "%sysinfo4%" goto sysinfo
-if /i "%prikaz%" equ "%sysinfo5%" goto sysinfo
-if /i "%prikaz%" equ "%sysinfo6%" goto sysinfo
+if /i "%prikaz%" equ "%sysinfo%" goto debiapp_start_sysinfo
+if /i "%prikaz%" equ "%sysinfo2%" goto debiapp_start_sysinfo
+if /i "%prikaz%" equ "%sysinfo3%" goto debiapp_start_sysinfo
+if /i "%prikaz%" equ "%sysinfo4%" goto debiapp_start_sysinfo
+if /i "%prikaz%" equ "%sysinfo5%" goto debiapp_start_sysinfo
+if /i "%prikaz%" equ "%sysinfo6%" goto debiapp_start_sysinfo
 
 if /i "%prikaz%" equ "%superuser%" goto SU-root
 
@@ -306,13 +337,15 @@ if /i "%prikaz%" equ "%clear1%" goto clear
 if /i "%prikaz%" equ "%clear2%" goto clear
 if /i "%prikaz%" equ "%clear3%" goto clear
 
-if /i "%prikaz%" equ "%notepad1%" goto notepad
-if /i "%prikaz%" equ "%notepad2%" goto notepad
-if /i "%prikaz%" equ "%notepad3%" goto notepad
+if /i "%prikaz%" equ "%notepad1%" goto debiapp_start_notepad
+if /i "%prikaz%" equ "%notepad2%" goto debiapp_start_notepad
+if /i "%prikaz%" equ "%notepad3%" goto debiapp_start_notepad
 
 if /i "%prikaz%" equ "%colorch1%" goto colorch
 if /i "%prikaz%" equ "%colorch2%" goto colorch
 if /i "%prikaz%" equ "%colorch3%" goto colorch
+if /i "%prikaz%" equ "%colorch4%" goto colorch
+if /i "%prikaz%" equ "%colorch5%" goto colorch
 
 if /i "%prikaz%" equ "%update1%" goto update
 
@@ -320,119 +353,21 @@ if /i "%prikaz%" equ "%about1%" goto about
 if /i "%prikaz%" equ "%about2%" goto about
 if /i "%prikaz%" equ "%about3%" goto about
 
-if /i "%prikaz%" equ "%snake1%" goto snake
-if /i "%prikaz%" equ "%snake2%" goto snake
-if /i "%prikaz%" equ "%snake3%" goto snake
+if /i "%prikaz%" equ "%snake1%" goto debiapp_start_snake
+if /i "%prikaz%" equ "%snake2%" goto debiapp_start_snake
+if /i "%prikaz%" equ "%snake3%" goto debiapp_start_snake
 
-if "%prikaz%" equ "" set "prikaz=neplatny"
-if "%prikaz%" equ " " set "prikaz=neplatny"
-if "%prikaz%" equ "  " set "prikaz=neplatny"
-if /i "%prikaz%" equ "%neplatny%" goto neplatny
-
-
-
-if NOT "%prikaz%" equ "%vypnou%" goto neplatny
-if NOT "%prikaz%" equ "%vypnou2%" goto neplatny
-if NOT "%prikaz%" equ "%vypnou3%" goto neplatny
-if NOT "%prikaz%" equ "%vypnou4%" goto neplatny
-if NOT "%prikaz%" equ "%vypnou5%" goto neplatny
-
-if NOT "%prikaz%" equ "%restar%" goto neplatny
-if NOT "%prikaz%" equ "%restar2%" goto neplatny
-if NOT "%prikaz%" equ "%restar3%" goto neplatny
-
-if NOT "%prikaz%" equ "%kalku%" goto neplatny
-if NOT "%prikaz%" equ "%kalku2%" goto neplatny
-if NOT "%prikaz%" equ "%kalku3%" goto neplatny
-if NOT "%prikaz%" equ "%kalku4%" goto neplatny
-if NOT "%prikaz%" equ "%kalku5%" goto neplatny
-if NOT "%prikaz%" equ "%kalku6%" goto neplatny
-if NOT "%prikaz%" equ "%kalku7%" goto neplatny
-if NOT "%prikaz%" equ "%kalku78%" goto neplatny
-
-if NOT "%prikaz%" equ "%cas%" goto neplatny
-if NOT "%prikaz%" equ "%cas2%" goto neplatny
-
-if NOT "%prikaz%" equ "%jmeno%" goto neplatny
-if NOT "%prikaz%" equ "%jmeno2%" goto neplatny
-if NOT "%prikaz%" equ "%jmeno3%" goto neplatny
-if NOT "%prikaz%" equ "%jmeno4%" goto neplatny
-
-if NOT "%prikaz%" equ "%help%" goto neplatny
-if NOT "%prikaz%" equ "%help2%" goto neplatny
-if NOT "%prikaz%" equ "%help3%" goto neplatny
-
-if NOT "%prikaz%" equ "%dateet%" goto neplatny
-if NOT "%prikaz%" equ "%dateet2%" goto neplatny
-if NOT "%prikaz%" equ "%dateet3%" goto neplatny
-if NOT "%prikaz%" equ "%dateet4%" goto neplatny
-
-if NOT "%prikaz%" equ "%prog%" goto neplatny
-if NOT "%prikaz%" equ "%prog2%" goto neplatny
-
-if NOT "%prikaz%" equ "%market%" goto neplatny
-if NOT "%prikaz%" equ "%market2%" goto neplatny
-if NOT "%prikaz%" equ "%market3%" goto neplatny
-if NOT "%prikaz%" equ "%market4%" goto neplatny
-if NOT "%prikaz%" equ "%market5%" goto neplatny
-if NOT "%prikaz%" equ "%market6%" goto neplatny 
-
-if NOT "%prikaz%" equ "%sysinfo%" goto neplatny
-if NOT "%prikaz%" equ "%sysinfo2%" goto neplatny
-if NOT "%prikaz%" equ "%sysinfo3%" goto neplatny
-if NOT "%prikaz%" equ "%sysinfo4%" goto neplatny
-if NOT "%prikaz%" equ "%sysinfo5%" goto neplatny
-if NOT "%prikaz%" equ "%sysinfo6%" goto neplatny
-
-if NOT "%prikaz%" equ "%superuser%" goto neplatny
-
-if NOT "%prikaz%" equ "%zmenajmenaAAA%" goto neplatny
-if NOT "%prikaz%" equ "%zmenajmenaAAA2%" goto neplatny
-if NOT "%prikaz%" equ "%zmenajmenaAAA3%" goto neplatny
-if NOT "%prikaz%" equ "%zmenajmenaAAA4%" goto neplatny
-if NOT "%prikaz%" equ "%zmenajmenaAAA5%" goto neplatny
-if NOT "%prikaz%" equ "%zmenajmenaAAA6%" goto neplatny
-
-if NOT "%prikaz%" equ "%clear1% goto neplatny
-if NOT "%prikaz%" equ "%clear2% goto neplatny
-if NOT "%prikaz%" equ "%clear3% goto neplatny
-
-if NOT "%prikaz%" equ "%colorch1% goto neplatny
-if NOT "%prikaz%" equ "%colorch2% goto neplatny
-if NOT "%prikaz%" equ "%colorch3% goto neplatny
-
-if NOT "%prikaz%" equ "%notepad1% goto neplatny
-if NOT "%prikaz%" equ "%notepad2% goto neplatny
-if NOT "%prikaz%" equ "%notepad3% goto neplatny
-
-if NOT "%prikaz%" equ "%update1%" goto neplatny
-
-if NOT "%prikaz%" equ "%about1%" goto neplatny
-if NOT "%prikaz%" equ "%about2%" goto neplatny
-if NOT "%prikaz%" equ "%about3%" goto neplatny
-
-if NOT "%prikaz%" equ "%snake1%" goto neplatny
-if NOT "%prikaz%" equ "%snake2%" goto neplatny
-if NOT "%prikaz%" equ "%snake3%" goto neplatny
-
-
-echo Unknown command!
-goto prikaz
- 
-:neplatny
 echo Unknown command!
 goto prikaz 
   
+  
+::SUPERUSER
 :SU-root
 set /p helso=Password:
-set heslo=dsds2019
-if /i %helso%==%heslo% goto suroot
+set heslo=2020dosXYZA
+if /i "%helso%"=="%heslo%" goto suroot
 
 msg * Forbidden... (are you trying to hack system?)
-goto prikaz
-
-:dattt
-echo Date: %date%
 goto prikaz
 
 :suroot  
@@ -448,36 +383,18 @@ rename system.debiapp system.bat     >nul
 rename snake.debiapp snake.bat     >nul
 echo System unlocked! Glitches may appear... 
 goto prikaz
-                            
-:sysinfo
-cd..
-cd core
-if not exist "%cd%\system.debiapp" if not exist "%cd%\system.bat" goto DebiAppSysinfomissing
-if exist "%cd%\system.bat" rename system.bat system.debiapp
-goto DebiAppSysinfoyes
-:DebiAppSysinfomissing
-echo SystemInfo not found! Trying to update from internet...
-echo.
-echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
-cd..
-cd LOG
-echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
-cd..
-cd core
-if not exist "%cd%\system.debiapp" goto DebiAppSysinfomissing2
-echo SystemInfo successfully installed!
-goto DebiAppSysinfoyes
-:DebiAppSysinfomissing2
-echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
-goto prikaz
-:DebiAppSysinfoyes
-rename system.debiapp system.bat  >nul
-start system.bat
-echo Starting SystemInfo...
-ping localhost -n 1 >nul
+
+
+::DATE AND TIME
+:dattt
+echo Date: %date%
 goto prikaz
 
+:tim
+echo Time: %time%
+goto prikaz
+
+::BASIC COMMANDS - SHUTDOWN AND RESET
 :shu
 cls
 cd..
@@ -485,8 +402,6 @@ cd boot
 rename vyp.debi vyp.bat   >nul
 start vyp.bat
 exit
-
-
 
 :res
 cls
@@ -496,21 +411,82 @@ rename reset.debi reset.bat
 start reset.bat
 exit
 
-
-
-:tim
-echo Time: %time%
-goto prikaz
-
-
-
+::CUSTOMIZATION
 :nam
 echo Windows username: %username%
 echo DebiOS username: %uzivatel%
 goto prikaz
 
+:clear
+goto splashscreen
 
+:prog
+start program.bat
+echo Az dokoncite praci, vratte se na uvodni obrazovku stiskem libovolne klavesy
+pause >nul
+goto prikaz
 
+:market
+goto prikaz
+
+:colorch
+echo Select color of user interface:
+CmdMenuSel F1F0 "Blue" "Green" "Aqua" "Red" "Purple" "Yellow" "Gray" "Dark gray" "Light blue" "Light green" "Light aqua" "Light red" "Light purple" "Light yellow" "White"
+if %ERRORLEVEL% == 1 set barva=01
+if %ERRORLEVEL% == 2 set barva=02
+if %ERRORLEVEL% == 3 set barva=03
+if %ERRORLEVEL% == 4 set barva=04
+if %ERRORLEVEL% == 5 set barva=05
+if %ERRORLEVEL% == 6 set barva=06
+if %ERRORLEVEL% == 7 set barva=07
+if %ERRORLEVEL% == 8 set barva=08
+if %ERRORLEVEL% == 9 set barva=09
+if %ERRORLEVEL% == 10 set barva=0A
+if %ERRORLEVEL% == 11 set barva=0B
+if %ERRORLEVEL% == 12 set barva=0C
+if %ERRORLEVEL% == 13 set barva=0D
+if %ERRORLEVEL% == 14 set barva=0E
+if %ERRORLEVEL% == 15 set barva=0F
+color %barva%
+echo Is this right? Y/N
+set /p spravnost=
+set anooooo=Y
+set neee=N
+if "%spravnost%" equ "" set "spravnost=N"
+if /i %spravnost%==%anooooo% goto anobarva
+if /i %spravnost%==%neee% goto colorch
+
+:anobarva
+cd..
+cd data
+set /p prevbarva=<color.debidat
+del color.debidat
+echo %barva% >>color.debidat
+cd..
+cd LOG
+echo ##COLOR of UI changed from %prevbarva% to %barva% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo Color changed! Changes appear after reload...
+cd..
+cd system
+goto prikaz
+
+:zmenajmenaA
+cd..
+cd data
+set /p uzivatel=Choose new username: 
+set /p prevusername=<user.debidat 
+del user.debidat
+echo %uzivatel% >>user.debidat
+cd..
+cd LOG
+echo ##USERNAME changed from %prevusername% to %uzivatel% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Done! Restarting...
+ping localhost -n 2 >nul
+goto res
+
+::HELP COMMAND
 :pom
 echo Commands:
 echo shutdown - Shutdown DebiOS (please use when you're exiting DebiOS)
@@ -529,22 +505,82 @@ echo snake - Snake game
 echo about - About System and Special thanks
 goto prikaz
 
-:prog
-start program.bat
-echo Az dokoncite praci, vratte se na uvodni obrazovku stiskem libovolne klavesy
-pause >nul
-goto prikaz
 
-:market
-goto prikaz
 
-:kalku
+
+
+
+
+
+
+
+
+
+
+::DEBIAPPS
+
+
+::DebiAPPs syntax:
+::
+::debiapp_<phase>_<name>[state]
+::
+::phases: startup - startup of system, start - start of the app
+::states: missing - missing file, unable - unable to download, yes - file is here
+
+
+
+
+::------------------DEBIAPP - SYSINFO --------------------------
+                          
+:debiapp_start_sysinfo
 cd..
 cd core
-if not exist "%cd%\kalk.debiapp" if not exist "%cd%\kalk.bat" goto DebiAppKalkmissing
+if not exist "%cd%\system.debiapp" if not exist "%cd%\system.bat" goto debiapp_start_sysinfomissing
+if exist "%cd%\system.bat" rename system.bat system.debiapp
+goto debiapp_start_sysinfoyes
+
+
+:debiapp_start_sysinfomissing
+echo SystemInfo not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\system.debiapp" goto debiapp_start_sysinfounable
+echo SystemInfo successfully installed!
+goto debiapp_start_sysinfoyes
+
+
+:debiapp_start_sysinfounable
+echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+
+
+:debiapp_start_sysinfoyes
+rename system.debiapp system.bat  >nul
+start system.bat
+echo Starting SystemInfo...
+cd..
+cd system
+ping localhost -n 1 >nul
+goto prikaz
+
+
+::------------------DEBIAPP - CALCULATOR --------------------------
+
+:debiapp_start_calc
+cd..
+cd core
+if not exist "%cd%\kalk.debiapp" if not exist "%cd%\kalk.bat" goto debiapp_start_calcmissing
 if exist "%cd%\kalk.bat" rename kalk.bat kalk.debiapp
-goto DebiAppKalkyes
-:DebiAppKalkmissing
+goto debiapp_start_calcyes
+
+
+:debiapp_start_calcmissing
 echo Calculator not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
@@ -554,23 +590,28 @@ cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-if not exist "%cd%\kalk.debiapp" goto DebiAppKalkmissing2
+if not exist "%cd%\kalk.debiapp" goto debiapp_start_calcunable
 echo Calculator successfully installed!
-goto DebiAppKalkyes
-:DebiAppKalkmissing2
+goto debiapp_start_calcyes
+
+
+:debiapp_start_calcunable
 echo Sorry, we were unable to download Calculator. You can try to download it for yourself - just place kalk.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
-:DebiAppKalkyes
+
+
+:debiapp_start_calcyes
 rename kalk.debiapp kalk.bat  >nul
 start kalk.bat
 echo Starting Calculator...
+cd..
+cd system
 ping localhost -n 1 >nul
 goto prikaz
 
+::------------------DEBIAPP - TETRIS --------------------------
 
-
-
-:tetris
+:debiapp_start_tetris
 cd..
 cd core
 rename tetris.debiapp tetris.bat  >nul
@@ -579,13 +620,16 @@ echo Starting Tetris...
 ping localhost -n 1 >nul
 goto prikaz
 
-:snake
+::------------------DEBIAPP - SNAKE --------------------------
+
+:debiapp_start_snake
 cd..
 cd core
-if not exist "%cd%\snake.debiapp" if not exist "%cd%\snake.bat" goto DebiAppSnakemissing
+if not exist "%cd%\snake.debiapp" if not exist "%cd%\snake.bat" goto debiapp_start_snakemissing
 if exist "%cd%\snake.bat" rename snake.bat snake.debiapp
-goto DebiAppSnakeyes
-:DebiAppSnakemissing
+goto debiapp_start_snakeyes
+
+:debiapp_start_snakemissing
 echo Snake not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
@@ -595,37 +639,76 @@ cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
 cd..
 cd core
-if not exist "%cd%\snake.debiapp" goto DebiAppSnakemissing2
+if not exist "%cd%\snake.debiapp" goto debiapp_start_snakeunable
 echo Snake successfully installed!
-goto DebiAppSnakeyes
-:DebiAppSnakemissing2
+goto debiapp_start_snakeyes
+
+:debiapp_start_snakeunable
 echo Sorry, we were unable to download Snake. You can try to download it for yourself - just place snake.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto prikaz
-:DebiAppSnakeyes
+
+:debiapp_start_snakeyes
 rename snake.debiapp snake.bat  >nul
 start snake.bat
 echo Starting Snake...
+cd..
+cd system
 ping localhost -n 1 >nul
 goto prikaz
 
-:zmenajmenaA
+
+::------------------DEBIAPP - NOTEPAD --------------------------
+
+:debiapp_start_notepad
 cd..
-cd data
-set /p uzivatel=Choose new username:
-set /p prevusername=<user.debidat 
-del user.debidat
-echo %uzivatel% >>user.debidat
+cd core
+if not exist "%cd%\notepad.debiapp" if not exist "%cd%\notepad.bat" goto debiapp_start_notepadmissing
+if exist "%cd%\notepad.bat" rename notepad.bat notepad.debiapp
+goto debiapp_start_notepadyes
+
+
+:debiapp_start_notepadmissing
+echo Notepad not found! Trying to update from internet...
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
-echo ##USERNAME changed from %prevusername% to %uzivatel% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\notepad.debiapp" goto debiapp_start_notepadunable
+echo Notepad successfully installed!
+goto debiapp_start_notepadyes
+
+
+:debiapp_start_notepadunable
+echo Sorry, we were unable to download notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto prikaz
+
+
+:debiapp_start_notepadyes
+rename notepad.debiapp notepad.bat  >nul
+start notepad.bat
+echo Starting notepad...
 cd..
 cd system
-echo Done! Restarting...
-pause >nul
-goto res
+ping localhost -n 1 >nul
+goto prikaz
 
-:clear
-goto splashscreen
+
+
+
+
+
+
+
+
+
+
+
+::UPDATE SYSTEM
+
 
 :update
 SET mypath=%~dp0
@@ -722,81 +805,15 @@ exit
 echo No update available!
 goto prikaz
 
-:notepad
-cd..
-cd core
-if not exist "%cd%\notepad.debiapp" if not exist "%cd%\notepad.bat" goto DebiAppNotepadmissing
-if exist "%cd%\notepad.bat" rename notepad.bat notepad.debiapp
-goto DebiAppNotepadyes
-:DebiAppNotepadmissing
-echo Notepad not found! Trying to update from internet...
-echo.
-echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
-cd..
-cd LOG
-echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
-cd..
-cd core
-if not exist "%cd%\notepad.debiapp" goto DebiAppNotepadmissing2
-echo Notepad successfully installed!
-goto DebiAppNotepadyes
-:DebiAppNotepadmissing2
-echo Sorry, we were unable to download notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
-goto prikaz
-:DebiAppNotepadyes
-rename notepad.debiapp notepad.bat  >nul
-start notepad.bat
-echo Starting notepad...
-ping localhost -n 1 >nul
-goto prikaz
 
 
 
-:colorch
-echo Select color of user interface:
-CmdMenuSel F1F0 "Blue" "Green" "Aqua" "Red" "Purple" "Yellow" "Gray" "Dark gray" "Light blue" "Light green" "Light aqua" "Light red" "Light purple" "Light yellow" "White"
-if %ERRORLEVEL% == 1 set barva=01
-if %ERRORLEVEL% == 2 set barva=02
-if %ERRORLEVEL% == 3 set barva=03
-if %ERRORLEVEL% == 4 set barva=04
-if %ERRORLEVEL% == 5 set barva=05
-if %ERRORLEVEL% == 6 set barva=06
-if %ERRORLEVEL% == 7 set barva=07
-if %ERRORLEVEL% == 8 set barva=08
-if %ERRORLEVEL% == 9 set barva=09
-if %ERRORLEVEL% == 10 set barva=0A
-if %ERRORLEVEL% == 11 set barva=0B
-if %ERRORLEVEL% == 12 set barva=0C
-if %ERRORLEVEL% == 13 set barva=0D
-if %ERRORLEVEL% == 14 set barva=0E
-if %ERRORLEVEL% == 15 set barva=0F
-color %barva%
-echo Is this right? Y/N
-set /p spravnost=
-set anooooo=Y
-set neee=N
-if "%spravnost%" equ "" set "spravnost=N"
-if /i %spravnost%==%anooooo% goto anobarva
-if /i %spravnost%==%neee% goto colorch
 
-:anobarva
-cd..
-cd data
-set /p prevbarva=<color.debidat
-del color.debidat
-echo %barva% >>color.debidat
-cd..
-cd LOG
-echo ##COLOR of UI changed from %prevbarva% to %barva% by %uzivatel%## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
-echo Color changed! Changes appear after reload...
-cd..
-cd system
-goto prikaz
+::ABOUT SCREEN
 
 :about
 cls
-echo (c)2014-2019 DebiOS Software Development Studio
+echo (c)2014-2020 DebiOS Software Development Studio
 echo DebiOS version: %verzicka%
 echo Based on DebiOS One %year%
 echo.

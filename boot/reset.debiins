@@ -1,4 +1,10 @@
 @echo off
+title DebiOS
+
+::RESIZE
+mode con: cols=120 lines=30
+
+::iRE WORKS
 cd..
 cd system
 ren system.bat system.debi
@@ -14,187 +20,419 @@ ren system.bat system.debiapp
 ren snake.bat snake.debiapp
 ren notepad.bat notepad.debiapp
 cls
-cd..
-cd boot
+
+::SET THE DATE
 for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
 set today=%year%.%month%.%day%
+
+::BOOT ANIMATION
+cd..
+cd boot
+
 echo Restarting DebiOS ...
 echo shutdown complete
 ping -n 1 localhost >nul
 cls
 echo Starting...
 cls
-cd..
-cd boot
 COLOR 2
-for %%d in ( A Z ) do echo.|set /p=DOSONE
-cls
-for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z ) do echo.|set /p=#
 echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T a U V W X Y Z A A A A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A A A ) do echo.|set /p=#
+echo.
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A A) do echo|set /p=-
 for %%d in ( A ) do echo.|set /p=D
 for %%d in ( A ) do echo.|set /p=e
 for %%d in ( A ) do echo.|set /p=b
 for %%d in ( A ) do echo.|set /p=i
 for %%d in ( A ) do echo.|set /p=O
 for %%d in ( A ) do echo.|set /p=S
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A a A) do echo|set /p=-
 echo.
-for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z ) do echo.|set /p=#
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T a U V W X Y Z A A A A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A A A ) do echo.|set /p=#
 ping -n 2 localhost >nul
-cls                   
-echo Starting up DebiOS:
+cls
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                     *****
+echo                                                     *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.                                                   
+echo                                                     *****
+echo                                                     *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo         *****
-echo         *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                         *****
+echo                                                         *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                          *****
+echo                                                          *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo         *****
-echo         *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                         *****
+echo                                                         *****
+ping -n 1 localhost >nul
+cls  
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                          *****
+echo                                                          *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo         *****
-echo         *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                         *****
+echo                                                         *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                          *****
+echo                                                          *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo         *****
-echo         *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                         *****
+echo                                                         *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                          *****
+echo                                                          *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo         *****
-echo         *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                         *****
+echo                                                         *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo     *****
-echo     *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                          *****
+echo                                                          *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo      *****
-echo      *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                            *****
+echo                                                            *****
 ping -n 1 localhost >nul
 cls
-echo Starting up DebiOS:
 echo.
-echo        *****
-echo        *****
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                     Starting up DebiOS:
+echo.
+echo                                                             *****
+echo                                                             *****
 ping -n 1 localhost >nul
-cls
-echo Starting up DebiOS:
-echo.
-echo         *****
-echo         *****
-ping -n 1 localhost >nul               
 cls
 cd..
 cd data
 
+
+::UPDATE IN PROGRESS CHECK
 if NOT EXIST "updateprogress.debidat" goto neexistuje
 
 set /p updateprogress=<updateprogress.debidat
 set yep=yes
 if %updateprogress%==%yep% goto updateyes
 
-
+::UPDATE NOT IN PROGRESS-STARTUP
 :neexistuje
 cd..
 cd LOG
@@ -206,6 +444,8 @@ rename system.debi system.bat
 start system.bat
 exit
 
+
+::UPDATE IN PROGRESS-FINALIZATION AND STARTUP
 :updateyes
 cd..
 move "%cd%\system\updatefiles\system.debi" "%cd%\system\system.debi"

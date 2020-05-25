@@ -1,4 +1,10 @@
 @echo off
+::MADE BY: psrok1
+::MODIFIED BY: DebiOS developer studio
+::Thanks psrok1's software for making this possible.
+
+title DebiAPP: Snake
+
 setlocal ENABLEDELAYEDEXPANSION
 set copyright===Snake by psrok1 (c)2012 - Modified for DebiOS== 
 set maxx=70
@@ -130,6 +136,22 @@ if !result! EQU 1 goto terminate
 goto mainloop
 goto terminate
 :terminate
-endlocal
+
+cls
+echo.
+echo.
+echo                           #####                                                      ### 
+echo                          #     #   ##   #    # ######     ####  #    # ###### #####  ### 
+echo                          #        #  #  ##  ## #         #    # #    # #      #    # ### 
+echo                          #  #### #    # # ## # #####     #    # #    # #####  #    #  #  
+echo                          #     # ###### #    # #         #    # #    # #      #####      
+echo                          #     # #    # #    # #         #    #  #  #  #      #   #  ### 
+echo                           #####  #    # #    # ######     ####    ##   ###### #    # ### 
+echo.
+echo.
+echo                                      Game Over. Your final score: !tmpp!
+echo.
+echo                                            Quitting the game...
+endlocal                                                                 
+ping localhost -n 4 >nul
 exit
-echo Shutting down...

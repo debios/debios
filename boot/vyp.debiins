@@ -1,4 +1,10 @@
 @echo off
+title DebiOS
+
+::RESIZE
+mode con: cols=120 lines=30
+
+::iRE WORKS
 cd..
 cd system
 ren system.bat system.debi
@@ -16,6 +22,8 @@ ren notepad.bat notepad.debiapp
 cls
 cd..
 cd boot
+
+::SHUTDOWN LOG & FINALIZATION
 echo shutdown complete
 ping -n 1 localhost >nul
 cd..

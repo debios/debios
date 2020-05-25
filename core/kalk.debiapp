@@ -1,5 +1,7 @@
 @echo off
-title Calculator
+::RESIZE
+mode con: cols=120 lines=30
+title DebiAPP: Calculator
 color 2E
 for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
 if %second% equ 21 goto chyba
@@ -15,7 +17,7 @@ cd info
 set /p verze=<ver.debidat
 cd..
 cd..
-cd zdroj
+cd core
 color 1F
 echo DEBIOS ONE %verze% - ERROR
 echo.
@@ -81,7 +83,7 @@ exit
 
 :vyrazy
 cls
-echo List of usable expressions:
+echo List of available expressions:
 echo.
 echo + Add            - Substract
 echo * Multiply       / Divide

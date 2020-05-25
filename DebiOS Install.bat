@@ -8,9 +8,9 @@ SET mypath=%~dp0
 
 
 ::VER INFO
-set verzicinka=25.5.20-dev
+set verzicinka=26.5.20-dev
 set kernelik=DebiOS One 2020
-set titlik=DebiOS O25.5.20
+set titlik=DebiOS O26.5.20
 
 ::RESIZE WINDOW
 mode con: cols=120 lines=30
@@ -26,7 +26,7 @@ title DebiOS Installation
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 1 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 1 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -66,7 +66,7 @@ set "uzivatel=DebiOS%random%"
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -100,7 +100,7 @@ goto jmenogood
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -142,7 +142,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -183,7 +183,7 @@ cd system
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 3 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 3 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -239,7 +239,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 4 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 4 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -319,7 +319,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v24.5.20-dev) - BETA INSTALLATION                                 (part 5 of 5)
+echo         DebiOS Installation (v26.5.20-dev) - BETA INSTALLATION                                 (part 5 of 5)
 echo        ______________________________________________________________________________________________________
 echo.
 echo.

@@ -1,5 +1,8 @@
 @echo off
-title Notepad
+title DebiAPP: Notepad
+cd..
+if not exist "%cd%\user" mkdir user
+cd core
 
 :mainmenu
 mode con: cols=81 lines=30
@@ -8,6 +11,7 @@ echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][]
 echo.
 echo                     Help:
 echo                     create - Creates a file
+echo                     read - Reads already created file
 echo                     exit - Exits notepad app
 echo.
 goto cmd
@@ -23,6 +27,7 @@ if "%prikaz%" equ "%create%" goto newfile
 if "%prikaz%" equ "%exit%" goto exit
 if "%prikaz%" equ "" goto badcmd
 if "%prikaz%" equ " " goto badcmd
+if "%prikaz%" equ "read" goto read
 goto badcmd
 
 :newfiledeny
@@ -38,7 +43,6 @@ if "%filename%" equ "    " goto newfiledeny
 
 
 cd..
-if not exist "%cd%\user" mkdir user
 cd user
 cls
 echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
@@ -60,7 +64,29 @@ echo Press ENTER to return to main menu
 pause >nul
 goto mainmenu
 
+:read
+cd..
+cd user
+cls
+echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
+echo Please type the name of the file in /user/ folder (without the .txt!)
+echo To end the read session, type END
 
+:enterfile
+set /p soubor=Filename: 
+
+if "%soubor%" equ "END" cd.. & cd core & goto mainmenu
+if not exist "%cd%\%soubor%.txt" goto nonexistent
+
+
+type %soubor%.txt
+echo.
+goto enterfile
+
+
+:nonexistent
+echo This file does not exist! Please enter a valid filename.
+goto enterfile
 
 :exit
 echo Shutting down...
