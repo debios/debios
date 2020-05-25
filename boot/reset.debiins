@@ -5,7 +5,7 @@ ren system.bat system.debi
 ren program.bat program.debi
 cd..
 cd boot
-ren reset.bat res.debi
+ren vyp.bat vyp.debi
 ren boot.bat boot.debi
 cd..
 cd core

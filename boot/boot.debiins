@@ -6,7 +6,7 @@ ren program.bat program.debi
 cd..
 cd boot
 ren reset.bat res.debi
-ren boot.bat boot.debi
+ren vyp.bat vyp.debi
 cd..
 cd core
 ren kalk.bat kalk.debiapp
