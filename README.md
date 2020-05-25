@@ -141,7 +141,7 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 **DebiOS 26.5.20-dev**  
 -Ton of bugfixes  
 -System files optimalization 
--Language fixes                                   
+-Language fixes                                     
 -DebiAPP: Notepad - updated with bugfixes and read feature (delete the original notepad.debiapp from /core/ if updating from older version)  
 -DebiAPP: Snake - game over screen updated   
 -DebiAPP: SystemInfo - bugfixes, new info recorded   
