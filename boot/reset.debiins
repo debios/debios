@@ -5,13 +5,14 @@ ren system.bat system.debi
 ren program.bat program.debi
 cd..
 cd boot
-ren vyp.bat vyp.debi
+ren reset.bat res.debi
 ren boot.bat boot.debi
 cd..
 cd core
-ren col.bat col.debi
 ren kalk.bat kalk.debiapp
-ren system.bat system.debi
+ren system.bat system.debiapp
+ren snake.bat snake.debiapp
+ren notepad.bat notepad.debiapp
 cls
 cd..
 cd boot

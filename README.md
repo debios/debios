@@ -132,7 +132,12 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -Update system bugfixes    
   
 **DebiOS 01.2.20-dev**  
--Installation bugfixes
+-Installation bugfixes   
+  
+**DebiOS 25.5.20-dev**  
+-Minor bugfixes  
+-Installaion redesign and updates  
+  
   
 ## TODO  
 

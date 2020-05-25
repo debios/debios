@@ -152,6 +152,7 @@ echo.
 echo ##################################################################
 echo DebiOS Command line: To get list of commands type "help"! 
 :prikaz
+set prikaz=0
 set /p prikaz=DebiOS Command line: 
 
 set vypnou=vypnout

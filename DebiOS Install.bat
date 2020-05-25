@@ -19,8 +19,10 @@ mode con: cols=120 lines=30
 set debiosjmeno=debios
 set superuserjm=superuser
 
+::TITLE
 title DebiOS Installation    
 
+::FIRST SCREEN
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
@@ -53,12 +55,14 @@ echo.       DebiOS is still in development. You are now using a public beta. & p
 
 
 
-
+::USERNAME DEFAULT SET
 :jmeno
 cls
 color 07   
 set "uzivatel=DebiOS%random%"
 
+
+::USERNAME SELECT
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
@@ -71,6 +75,8 @@ echo.
 echo        Please enter your username and press ENTER to continue:
 echo. 
 set /p uzivatel=
+
+::USERNAME PARSER
 if "%uzivatel%" equ " " set "uzivatel=DebiOS%random%"
 if "%uzivatel%" equ "" set "uzivatel=DebiOS%random%"
 if "%uzivatel%" equ "%debiosjmeno%" goto jmenoS
@@ -83,10 +89,12 @@ if "%uzivatel%" equ "1" goto chyba
 
 goto jmenogood
 
+::RANDOM USERNAME SET
 :randomjmeno
 set uzivatel=debiuser%random%
 goto jmenogood
 
+::FORBIDDEN USERNAME SCREEN
 :jmenoS
 
 echo.
@@ -122,6 +130,8 @@ echo.       ERR: BAD_USERNAME & pause >nul
 cls
 goto jmeno
 
+
+::USERNAME WRITE
 :jmenogood
 if not exist "%mypath:~0,-1%\data\" mkdir data
 goto datafu
@@ -161,6 +171,8 @@ echo.
 echo.
 echo.        & pause >nul
 
+
+::INTERFACE COLOR
 :barva
 cls
 color 07
@@ -219,6 +231,8 @@ if not exist "%mypath:~0,-1%\boot\" mkdir boot
 goto fbootgud
 
 
+
+::FINISHING SCREEN
 :fbootgud
 cls
 
@@ -236,6 +250,7 @@ ping localhost -n 2 >nul
 
 cd boot
 
+::CHECKING FILES
 if not exist vyp.debiins set vypnout=1
 if not exist reset.debiins set reset=1
 if not exist boot.debiins set boot=1
@@ -264,6 +279,7 @@ if /i "%srn%"=="1" goto chyba
 if /i "%insb%"=="1" goto chyba
 if /i "%ire%"=="1" goto chyba
 
+::IRE RENAMING
 echo        * COMPLETE!
 echo.
 echo        * Applying iRE filesystem changes
@@ -299,6 +315,7 @@ echo.
 
 cls
 
+::COMPLETE SCREEN
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
@@ -320,6 +337,8 @@ echo.
 echo.
 echo         - Press ENTER to complete installation...
 pause >nul
+
+::BOOTABLE EDITS
 cd.. 
 move "%mypath:~0,-1%\system\insb.bat" "%mypath:~0,-1%"
 rename insb.bat DebiOS.bat
@@ -336,6 +355,8 @@ msg * Installation complete!
 start DebiOS.bat
 exit
 
+
+::ERROR MESSAGES
 :chyba
 cls
 color 1F
