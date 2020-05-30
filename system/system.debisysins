@@ -45,7 +45,7 @@ goto afterinstall
 :debiapp_startup_notepadmissing
 echo Updating DebiAPPs...
 echo downloading >notepad.debiapp
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -56,7 +56,7 @@ goto debiapp_startup_check
 :debiapp_startup_calcmissing
 echo Updating DebiAPPs...
 echo downloading >kalk.debiapp
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -67,7 +67,7 @@ goto debiapp_startup_check
 :debiapp_startup_sysinfomissing
 echo Updating DebiAPPs...
 echo downloading >system.debiapp
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -78,7 +78,7 @@ goto debiapp_startup_check
 :debiapp_startup_snakemissing
 echo Updating DebiAPPs...
 echo downloading >snake.debiapp
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -107,9 +107,9 @@ cls
 
 
 
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/title.md latesttitle.debidat  >nul
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/latestkernel.md latestkernel.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/ver.md latest.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/title.md latesttitle.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/latestkernel.md latestkernel.debidat  >nul
 echo Loading core...
 cls
 set /p latest=<latest.debidat
@@ -129,7 +129,7 @@ set uzivatel=Invalid username
 cd..
 cd system
 cls
-download http://raw.githubusercontent.com/SnakerCZ/snakercz.github.io/master/ver.md latest.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/ver.md latest.debidat  >nul
 echo Loading core...
 cls
 set /p latest=<latest.debidat
@@ -544,7 +544,7 @@ goto debiapp_start_sysinfoyes
 echo SystemInfo not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -584,7 +584,7 @@ goto debiapp_start_calcyes
 echo Calculator not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -633,7 +633,7 @@ goto debiapp_start_snakeyes
 echo Snake not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -671,7 +671,7 @@ goto debiapp_start_notepadyes
 echo Notepad not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/SnakerCZ/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -720,12 +720,12 @@ echo Downloading latest files...
 mkdir updatefiles
 copy download.exe "%cd%\updatefiles\download.exe"
 cd updatefiles
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/system/program.debiins program.debi
+download https://raw.githubusercontent.com/debios/debios/master/system/program.debiins program.debi
 cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/system/system.debisysins system.debi
+download https://raw.githubusercontent.com/debios/debios/master/system/system.debisysins system.debi
 cls
 echo Updating, please wait...
 echo.
@@ -738,17 +738,17 @@ cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/boot.debiins boot.debi
+download https://raw.githubusercontent.com/debios/debios/master/boot/boot.debiins boot.debi
 cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/vyp.debiins vyp.debi
+download https://raw.githubusercontent.com/debios/debios/master/boot/vyp.debiins vyp.debi
 cls
 echo Updating, please wait...
 echo.
 echo Downloading latest files...
-download https://raw.githubusercontent.com/SnakerCZ/debios/master/boot/reset.debiins reset.debi
+download https://raw.githubusercontent.com/debios/debios/master/boot/reset.debiins reset.debi
 cls
 echo Updating, please wait...
 echo.
@@ -817,7 +817,7 @@ echo (c)2014-2020 DebiOS Software Development Studio
 echo DebiOS version: %verzicka%
 echo Based on DebiOS One %year%
 echo.
-echo Website: http://snakercz.github.io
+echo Website: http://debios.github.io
 echo. 
 echo External modules used:
 echo   - cmdmenusel.exe
