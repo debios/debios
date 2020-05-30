@@ -146,6 +146,8 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -DebiAPP: Snake - game over screen updated   
 -DebiAPP: SystemInfo - bugfixes, new info recorded   
 
+**DebiOS 31.5.20-dev**  
+-Minor changes in update system  
   
 ## TODO  
 
