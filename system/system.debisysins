@@ -709,6 +709,9 @@ goto prikaz
 
 ::UPDATE SYSTEM
 
+:noupdate
+echo No update available!
+goto prikaz
 
 :update
 SET mypath=%~dp0
@@ -801,9 +804,6 @@ rename reset.debi reset.bat
 start reset.bat
 exit
 
-:noupdate
-echo No update available!
-goto prikaz
 
 
 
