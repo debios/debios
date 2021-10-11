@@ -1,4 +1,8 @@
 @echo off
+::Initialize UTF-8
+chcp 65001
+
+::Notepad
 title DebiAPP: Notepad
 cd..
 if not exist "%cd%\user" mkdir user
@@ -46,7 +50,7 @@ cd..
 cd user
 cls
 echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
-echo Filename: %filename%.txt - TO SAVE FILE TYPE "SAVE"
+echo Filename: %filename%.txt - TO SAVE FILE TYPE "SAVE" (case-sensitive)
 echo.
 :content
 set /p content=
@@ -70,7 +74,7 @@ cd user
 cls
 echo [][][][][][][][][][][][][][][][][][]Notepad[][][][][][][][][][][][][][][][][][][]
 echo Please type the name of the file in /user/ folder (without the .txt!)
-echo To end the read session, type END
+echo To end the read session, type END (case-sensitive)
 
 :enterfile
 set /p soubor=Filename: 

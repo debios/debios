@@ -8,12 +8,15 @@ SET mypath=%~dp0
 
 
 ::VER INFO
-set verzicinka=31.5.20-dev
-set kernelik=DebiOS One 2020
-set titlik=DebiOS O31.5.20
+set verzicinka=11.10.21-dev
+set kernelik=DebiOS One 2021
+set titlik=DebiOS O11.10.20
 
 ::RESIZE WINDOW
 mode con: cols=120 lines=30
+
+::INITIALIZE UTF-8
+chcp 65001
 
 ::FORBIDDEN NAMES
 set debiosjmeno=debios
@@ -26,7 +29,7 @@ title DebiOS Installation
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 1 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 1 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -66,7 +69,7 @@ set "uzivatel=DebiOS%random%"
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -100,7 +103,7 @@ goto jmenogood
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -142,7 +145,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -183,7 +186,7 @@ cd system
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 3 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 3 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -239,7 +242,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 4 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 4 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -319,7 +322,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v31.5.20-dev) - BETA INSTALLATION                                 (part 5 of 5)
+echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 5 of 5)
 echo        ______________________________________________________________________________________________________
 echo.
 echo.
@@ -351,7 +354,6 @@ echo %verzicinka%>>ver.debidat
 cd..
 cd..
 if not exist "%cd%\LOG" mkdir LOG
-msg * Installation complete!
 start DebiOS.bat
 exit
 

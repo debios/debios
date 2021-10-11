@@ -8,6 +8,8 @@ mode con: cols=120 lines=30
 SET mypath=%~dp0
 ::%mypath:~0,-1%
 
+::INITIALIZE UTF-8
+chcp 65001
 
 ::iRE FS WORKS
 cd..
@@ -40,11 +42,10 @@ goto afterinstall
 
 
 ::DEBIAPP UPDATING
-
+                                  
 
 :debiapp_startup_notepadmissing
 echo Updating DebiAPPs...
-echo downloading >notepad.debiapp
 download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
@@ -55,7 +56,6 @@ goto debiapp_startup_check
 
 :debiapp_startup_calcmissing
 echo Updating DebiAPPs...
-echo downloading >kalk.debiapp
 download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
@@ -66,7 +66,6 @@ goto debiapp_startup_check
 
 :debiapp_startup_sysinfomissing
 echo Updating DebiAPPs...
-echo downloading >system.debiapp
 download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
@@ -77,7 +76,6 @@ goto debiapp_startup_check
 
 :debiapp_startup_snakemissing
 echo Updating DebiAPPs...
-echo downloading >snake.debiapp
 download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
@@ -162,7 +160,8 @@ echo                      %nazevverzicky%
 echo.
 echo                    Welcome %uzivatel%! 
 echo.
-echo                  Time: %date% %time%
+set _time=%TIME:~0,2%:%TIME:~3,2%:%TIME:~6,2%
+echo                  Time: %date% %_time%
 
 ::UPDATE CHECK (IF EMPTY, INTERNET NOT WORKING)
 if "%latest%" equ [] goto endofss 
@@ -362,12 +361,12 @@ goto prikaz
   
   
 ::SUPERUSER
-:SU-root
+:SU-root                   
 set /p helso=Password:
-set heslo=2020dosXYZA
+set heslo=2021DebiSuperUser
 if /i "%helso%"=="%heslo%" goto suroot
 
-msg * Forbidden... (are you trying to hack system?)
+echo Forbidden... are you trying to hack the system?
 goto prikaz
 
 :suroot  
@@ -391,7 +390,8 @@ echo Date: %date%
 goto prikaz
 
 :tim
-echo Time: %time%
+set _time=%TIME:~0,2%:%TIME:~3,2%:%TIME:~6,2%
+echo Time: %_time%
 goto prikaz
 
 ::BASIC COMMANDS - SHUTDOWN AND RESET
@@ -488,21 +488,32 @@ goto res
 
 ::HELP COMMAND
 :pom
-echo Commands:
-echo shutdown - Shutdown DebiOS (please use when you're exiting DebiOS)
-echo restart - Restart DebiOS
-echo date - Shows date
-echo time - Shows time
-echo name - Shows Windows and DebiOS username
-echo help - List of commands
-echo calculator - Calculator
-echo systeminfo - Informations about system (version etc.) 
-echo namechange - DebiOS username change
-echo clear - Clears command line
-echo notepad - Notepad for writing files
-echo color change - Menu for color interface change [BETA]
-echo snake - Snake game
-echo about - About System and Special thanks
+echo.
+echo DebiOS Help - the list of commands
+echo ----------------------------------
+echo.
+echo Basic system actions
+echo  - shutdown - Shutdown DebiOS (please use when you're exiting DebiOS)
+echo  - restart - Restart DebiOS
+echo  - date - Shows date
+echo  - time - Shows time
+echo  - name - Shows Windows and DebiOS username
+echo  - help - List of commands
+echo.
+echo DebiAPPs (pre-installed system apps)
+echo  - calculator - Calculator
+echo  - systeminfo - Informations about system (version etc.) 
+echo  - notepad - Notepad for writing files
+echo  - snake - Snake game
+echo.
+echo Personalisation
+echo  - namechange - DebiOS username change
+echo  - clear - Clears command line
+echo  - color change - Menu for color interface change [BETA]
+echo.
+echo Miscellaneous
+echo  - about - About System and Special thanks
+echo.
 goto prikaz
 
 

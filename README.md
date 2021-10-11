@@ -147,10 +147,19 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -DebiAPP: SystemInfo - bugfixes, new info recorded   
 
 **DebiOS 31.5.20-dev**  
--Minor changes in update system  
-  
+-Minor changes in update system    
+
+**DebiOS 11.10.21-dev**  
+-A bit of code polishing      
+-Many bugfixes (e.g. DebiAPP update system)      
+-Help command was modified 
+-Boot time was reduced     
+-DebiAPP: Snake - game was modified (Game Over screen)   
+-DebiAPP: Notepad - now saves files in UTF-8     
+    
 ## TODO  
 
+iRE 2.0 (centralised filesystem)  
 Multimedia functions  
 Fully customizable CUI **✓**    
 Advanced logging    

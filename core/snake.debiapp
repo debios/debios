@@ -151,7 +151,7 @@ echo.
 echo.
 echo                                      Game Over. Your final score: !tmpp!
 echo.
-echo                                            Quitting the game...
+echo                                           Click any key to exit...
 endlocal                                                                 
-ping localhost -n 4 >nul
+pause >nul
 exit
