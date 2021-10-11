@@ -152,7 +152,7 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 **DebiOS 11.10.21-dev**  
 -A bit of code polishing      
 -Many bugfixes (e.g. DebiAPP update system)      
--Help command was modified 
+-Help command was modified  
 -Boot time was reduced     
 -DebiAPP: Snake - game was modified (Game Over screen)   
 -DebiAPP: Notepad - now saves files in UTF-8     
