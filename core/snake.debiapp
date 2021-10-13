@@ -1,3 +1,4 @@
+:start
 @echo off
 ::MADE BY: psrok1
 ::MODIFIED BY: DebiOS developer studio
@@ -178,12 +179,14 @@ cd core
 echo.
 cd..
 cd system
-CmdMenuSel F8F0 "                                                 Play Again" "                                                    Exit"
-cd..
-cd core                                                                
-if %ERRORLEVEL% == "1" goto playagain
-exit
+CmdMenuSel F8F0 "                                                 Play Again" "                                                    Exit"                                                            
+if %ERRORLEVEL% == 1 goto playagain
+if %ERRORLEVEL% == 2 goto exit
+:exit
+call exit
+call rename snake.bat snake.debiapp
 :playagain
+cd..
+cd core 
 call snake.bat
 exit
-
