@@ -51,7 +51,7 @@ for %%d in ( A ) do echo.|set /p=b
 for %%d in ( A ) do echo.|set /p=i
 for %%d in ( A ) do echo.|set /p=O
 for %%d in ( A ) do echo.|set /p=S
-for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A a A) do echo|set /p=-
+for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A A) do echo|set /p=-
 echo.
 echo.
 ping -n 2 localhost >nul

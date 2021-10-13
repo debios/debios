@@ -47,7 +47,6 @@ echo.
 echo.
 echo.
 echo.
-for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T a U V W X Y Z A A A A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A A A ) do echo.|set /p=#
 echo.
 for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A A) do echo|set /p=-
 for %%d in ( A ) do echo.|set /p=D
@@ -58,7 +57,6 @@ for %%d in ( A ) do echo.|set /p=O
 for %%d in ( A ) do echo.|set /p=S
 for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I A A A A A A A A A A A A A A A A a A) do echo|set /p=-
 echo.
-for %%d in ( A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T a U V W X Y Z A A A A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A B C ª D E F G H CH I J K L M N O P Q R S T U V W X Y Z A A A ) do echo.|set /p=#
 ping -n 2 localhost >nul
 cls
 echo.
