@@ -168,5 +168,5 @@ Multilanguage support
 Mouse control support  
 Create GUI for DebiOS  
   
-## DebiOS Structure and future interfaces
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/07bJDdK"  ><a href="//imgur.com/a/07bJDdK">DebiOS Structure and</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+## DebiOS Structure and future interfaces  
+<iframe src="https://imgur.com/a/07bJDdK"> </iframe>  
