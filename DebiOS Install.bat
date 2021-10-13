@@ -8,9 +8,9 @@ SET mypath=%~dp0
 
 
 ::VER INFO
-set verzicinka=11.10.21-dev
+set verzicinka=13.10.21-dev
 set kernelik=DebiOS One 2021
-set titlik=DebiOS O11.10.20
+set titlik=DebiOS O13.10.21
 
 ::RESIZE WINDOW
 mode con: cols=120 lines=30
@@ -69,7 +69,7 @@ set "uzivatel=DebiOS%random%"
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -103,7 +103,7 @@ goto jmenogood
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -145,7 +145,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 2 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 2 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -186,7 +186,7 @@ cd system
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 3 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 3 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -242,7 +242,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 4 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 4 of 5)
 echo        ______________________________________________________________________________________________________
 echo.      
 echo.
@@ -322,7 +322,7 @@ cls
 echo.
 echo        ______________________________________________________________________________________________________
 echo.      
-echo         DebiOS Installation (v%verzicinka%)) - BETA INSTALLATION                                 (part 5 of 5)
+echo         DebiOS Installation (v%verzicinka%) - BETA INSTALLATION                                 (part 5 of 5)
 echo        ______________________________________________________________________________________________________
 echo.
 echo.

@@ -4,6 +4,8 @@ title DebiOS
 ::RESIZE
 mode con: cols=120 lines=30
 
+::SET DATE 
+for /f %%x in ('wmic path win32_localtime get /format:list ^| findstr "="') do set %%x
 
 SET mypath=%~dp0
 ::%mypath:~0,-1%
@@ -11,11 +13,22 @@ SET mypath=%~dp0
 ::INITIALIZE UTF-8
 chcp 65001
 
+::DEBIAPP BOOT UPDATE CHECK
+cd..
+cd data
+if not exist "%cd%\update" mkdir update
+cd update
+if not exist "%cd%\bootupdate.debidat" echo false >bootupdate.debidat 
+set /p debiappBU=<bootupdate.debidat 
+cd..
+cd..
+cd system
+
 ::iRE FS WORKS
 cd..
 cd data
 set /p barva=<color.debidat
-color %barva%
+color %barva% 
 cd..
 cd boot
 rename boot.bat boot.debi
@@ -37,8 +50,8 @@ if not exist "%cd%\kalk.debiapp" goto debiapp_startup_calcmissing
 if not exist "%cd%\system.debiapp" goto debiapp_startup_sysinfomissing
 if not exist "%cd%\snake.debiapp" goto debiapp_startup_snakemissing
 
-::IF ALL EXIST, GOTO AFTERINSTALL
-goto afterinstall
+::IF ALL EXIST, GOTO BOOTUPDATE CHECK
+goto debiapp_startup_bootupdate
 
 
 ::DEBIAPP UPDATING
@@ -83,6 +96,36 @@ echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%
 cd..
 cd core
 goto debiapp_startup_check
+
+:debiapp_startup_bootupdate
+cd..
+cd data
+cd update
+cd..
+cd..
+cd system
+if %debiappBU% == false goto afterinstall
+echo Updating all DebiAPPs (DebiAPP Boot Update feature)...
+echo.
+cd..
+cd core
+del kalk.debiapp >nul
+del notepad.debiapp >nul
+del snake.debiapp >nul
+del system.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (DebiAPP Boot Update) - kalk.debiapp, notepad.debiapp, snake.debiapp, system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo All DebiAPPs sucessfully updated! 
+goto afterinstall
+
+
 
 
 ::UPDATE CONTROL AND USERNAME PARSING
@@ -268,7 +311,19 @@ set snake1=snake
 set snake2=snake game
 set snake3=game
 
+set duc1=debiapp update
+set duc2=debiapp update centre
+set duc3=duc
+set duc4=update debiapps
+set duc5=debiappupdatecentre
+
 ::COMMAND CHECK
+
+if /i "%prikaz%" equ "%duc1%" goto debiapp_update
+if /i "%prikaz%" equ "%duc2%" goto debiapp_update
+if /i "%prikaz%" equ "%duc3%" goto debiapp_update
+if /i "%prikaz%" equ "%duc4%" goto debiapp_update
+if /i "%prikaz%" equ "%duc5%" goto debiapp_update
 
 if /i "%prikaz%" equ "%vypnou%" goto shu
 if /i "%prikaz%" equ "%vypnou2%" goto shu
@@ -429,6 +484,229 @@ goto prikaz
 :market
 goto prikaz
 
+
+::
+::DebiAPP Update Centre
+::
+
+
+:debiapp_update
+echo.
+echo ----------------------------
+echo    DebiAPPs Update Centre
+echo ----------------------------
+echo.
+echo Select what you want to do:
+CmdMenuSel F8F0 "Update DebiAPPs" "Update every time on boot" "Exit DebiAPPs Update Centre"
+echo.
+if %ERRORLEVEL% == 1 goto debiapp_update_update
+if %ERRORLEVEL% == 2 goto debiapp_update_bootupdate
+if %ERRORLEVEL% == 3 goto prikaz
+
+
+:debiapp_update_bootupdate
+cd..
+cd data
+cd update
+set /p debiappBU=<bootupdate.debidat
+cd..
+cd..
+cd system
+echo.
+echo DebiAPP Boot Update feature
+echo.
+echo - DebiAPP Boot Update feature will update all DebiAPPs every time on boot (it will force update them every time, not just when they're removed)
+echo.
+echo Current state: %debiappBU%
+echo.
+CmdMenuSel F8F0 "On" "Off" "Back"
+if %ERRORLEVEL% == 1 goto debiapp_update_bootupdate_turnon
+if %ERRORLEVEL% == 2 goto debiapp_update_bootupdate_turnoff
+if %ERRORLEVEL% == 3 goto debiapp_update
+
+:debiapp_update_bootupdate_turnon
+cd..
+cd data
+cd update
+del bootupdate.debidat >nul
+echo true >bootupdate.debidat
+cd..
+cd..
+cd LOG
+echo ##DEBIAPP Boot Update has been turned on (using DUC)## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo DebiAPP Boot Update feature has been turned on!
+goto debiapp_update_bootupdate
+
+:debiapp_update_bootupdate_turnoff
+cd..
+cd data
+cd update
+del bootupdate.debidat >nul
+echo false >bootupdate.debidat
+cd..
+cd..
+cd LOG
+echo ##DEBIAPP Boot Update has been turned off (using DUC)## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo DebiAPP Boot Update feature has been turned off!
+goto debiapp_update_bootupdate
+
+:debiapp_update_update
+echo.
+echo Which DebiAPPs do you want to update?
+CmdMenuSel F8F0 "Calculator" "Notepad" "SystemInfo" "Snake game" "Update all DebiAPPs" "Back"
+echo.
+if %ERRORLEVEL% == 1 goto debiapp_update_calculator
+if %ERRORLEVEL% == 2 goto debiapp_update_notepad
+if %ERRORLEVEL% == 3 goto debiapp_update_systeminfo
+if %ERRORLEVEL% == 4 goto debiapp_update_snake
+if %ERRORLEVEL% == 5 goto debiapp_update_all
+if %ERRORLEVEL% == 6 goto debiapp_update
+
+
+:debiapp_update_all
+echo Updating all DebiAPPs...
+echo.
+cd..
+cd core
+del kalk.debiapp >nul
+del notepad.debiapp >nul
+del snake.debiapp >nul
+del system.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+if not exist "%cd%\kalk.debiapp" goto debiapp_update_all_unable
+if not exist "%cd%\notepad.debiapp" goto debiapp_update_all_unable
+if not exist "%cd%\snake.debiapp" goto debiapp_update_all_unable
+if not exist "%cd%\system.debiapp" goto debiapp_update_all_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - kalk.debiapp, notepad.debiapp, snake.debiapp, system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo All DebiAPPs sucessfully updated! 
+goto debiapp_update_update
+
+:debiapp_update_all_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - kalk.debiapp, notepad.debiapp, snake.debiapp, system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to update all DebiAPPs. You can try to download them for yourself - just place .debiapp files from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+:debiapp_update_calculator
+echo.
+echo Updating Calculator...
+cd..
+cd core
+del kalk.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+if not exist "%cd%\kalk.debiapp" goto debiapp_update_calculator_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Calculator succesfully updated! 
+goto debiapp_update_update
+
+:debiapp_update_calculator_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to download Calculator. You can try to download it for yourself - just place kalk.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+:debiapp_update_notepad
+echo.
+echo Updating Notepad...
+cd..
+cd core
+del notepad.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+if not exist "%cd%\notepad.debiapp" goto debiapp_update_notepad_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Notepad succesfully updated! 
+goto debiapp_update_update
+
+:debiapp_update_notepad_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to download Notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+:debiapp_update_snake
+echo.
+echo Updating Snake...
+cd..
+cd core
+del snake.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+if not exist "%cd%\snake.debiapp" goto debiapp_update_snake_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Snake succesfully updated! 
+goto debiapp_update_update
+
+:debiapp_update_snake_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to download Snake. You can try to download it for yourself - just place snake.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+:debiapp_update_systeminfo
+echo.
+echo Updating SystemInfo...
+cd..
+cd core
+del system.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+if not exist "%cd%\system.debiapp" goto debiapp_update_systeminfo_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo SystemInfo succesfully updated! 
+goto debiapp_update_update
+
+:debiapp_update_systeminfo_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+
+
+
+
+
+
 :colorch
 echo Select color of user interface:
 CmdMenuSel F1F0 "Blue" "Green" "Aqua" "Red" "Purple" "Yellow" "Gray" "Dark gray" "Light blue" "Light green" "Light aqua" "Light red" "Light purple" "Light yellow" "White"
@@ -504,7 +782,8 @@ echo DebiAPPs (pre-installed system apps)
 echo  - calculator - Calculator
 echo  - systeminfo - Informations about system (version etc.) 
 echo  - notepad - Notepad for writing files
-echo  - snake - Snake game
+echo  - snake - Snake game 
+echo  - debiapp update - DebiAPP Update Centre
 echo.
 echo Personalisation
 echo  - namechange - DebiOS username change
@@ -824,7 +1103,7 @@ exit
 
 :about
 cls
-echo (c)2014-2020 DebiOS Software Development Studio
+echo (c)2014-2021 DebiOS Software Development Studio
 echo DebiOS version: %verzicka%
 echo Based on DebiOS One %year%
 echo.

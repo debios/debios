@@ -155,8 +155,16 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -Help command was modified  
 -Boot time was reduced     
 -DebiAPP: Snake - game was modified (Game Over screen)   
--DebiAPP: Notepad - now saves files in UTF-8     
-    
+-DebiAPP: Notepad - now saves files in UTF-8  
+  
+**DebiOS 13.10.21-dev**
+-Bugfixes, code polishing      
+-System update bugfixes (changed procedure of finishing updates)          
+-DebiAPPs Update Centre (command for managing the settings of system preinstalled DebiAPPs)+Boot Update feature      
+-DebiAPP: Snake - Game over screen updated with more intuitive UI     
+-DebiAPP: Snake - High score feature      
+-Check out newly created DebiOS Structure and Future Interfaces cheatsheets - more on **https://imgur.com/a/07bJDdK**     
+   
 ## TODO  
 
 iRE 2.0 (centralised filesystem)  

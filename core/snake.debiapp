@@ -5,6 +5,18 @@
 
 title DebiAPP: Snake
 
+::HIGHSCORE CHECK
+cd..
+cd data
+if not exist "%cd%\snake" mkdir snake
+cd snake
+if not exist "%cd%\hiscore.debidat" echo 0 >hiscore.debidat 
+set /p hiscore=<hiscore.debidat 
+cd..
+cd..
+cd core
+
+
 setlocal ENABLEDELAYEDEXPANSION
 set copyright===Snake by psrok1 (c)2012 - Modified for DebiOS== 
 set maxx=70
@@ -85,6 +97,19 @@ if !result! EQU 2 (
 	call :moveplayer
 )
 GOTO :EOF
+:inputplayer
+
+rem W
+if !pdir! EQU 1 set defc=W
+rem S
+if !pdir! EQU 2 set defc=S
+rem A
+if !pdir! EQU 3 set defc=A
+rem D
+if !pdir! EQU 4 set defc=D
+choice /C WSAD /D !defc! /T 1
+set pdir=!ERRORLEVEL!
+GOTO :EOF
 
 :xpchoice
 set /p userinp=^(Use W,S,A,D^)
@@ -100,24 +125,12 @@ if "%userinp%" == "d" set userinp=4
 if "%userinp%" == "X" set userinp=5
 if "%userinp%" == "x" set userinp=5
 GOTO :EOF
-:inputplayer
 
-rem W
-if !pdir! EQU 1 set defc=W
-rem S
-if !pdir! EQU 2 set defc=S
-rem A
-if !pdir! EQU 3 set defc=A
-rem D
-if !pdir! EQU 4 set defc=D
-choice /C WSAD /D !defc! /T 1
-set pdir=!ERRORLEVEL!
-GOTO :EOF
 
 :drawview
 cls
 set /A tmpp=(!pcount!-1)*10
-echo !copyright! --- Points: !tmpp!
+echo !copyright! --- Points: !tmpp! --- High Score: %hiscore%
 call :initvga
 for /L %%i in (1,1,!pcount!) do call :putchar !px%%i! !py%%i! *
 call :putchar !fx! !fy! x
@@ -150,8 +163,27 @@ echo                           #####  #    # #    # ######     ####    ##   ####
 echo.
 echo.
 echo                                      Game Over. Your final score: !tmpp!
+if !tmpp! LEQ %hiscore% goto nonewhigh 
+echo                                              NEW HIGH SCORE: !tmpp!!
+cd..
+cd data
+cd snake
+del hiscore.debidat >nul
+echo !tmpp! >hiscore.debidat
+set hiscore=<hiscore.debidat
+cd..
+cd..
+cd core
+:nonewhigh
 echo.
-echo                                           Click any key to exit...
-endlocal                                                                 
-pause >nul
+cd..
+cd system
+CmdMenuSel F8F0 "                                                 Play Again" "                                                    Exit"
+cd..
+cd core                                                                
+if %ERRORLEVEL% == "1" goto playagain
 exit
+:playagain
+call snake.bat
+exit
+
