@@ -169,4 +169,4 @@ Mouse control support
 Create GUI for DebiOS  
   
 ## DebiOS Structure and future interfaces  
-<iframe src="https://imgur.com/a/07bJDdK"> </iframe>  
+<figure class="video_container"><iframe src="https://imgur.com/a/07bJDdK"> </iframe>  </figure>
