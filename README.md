@@ -157,7 +157,7 @@ TODO: systeminfo->debiapp, advanced log system - you can select what you want to
 -DebiAPP: Snake - game was modified (Game Over screen)   
 -DebiAPP: Notepad - now saves files in UTF-8  
   
-**DebiOS 13.10.21-dev**
+**DebiOS 13.10.21-dev**  
 -Bugfixes, code polishing      
 -System update bugfixes (changed procedure of finishing updates)          
 -DebiAPPs Update Centre (command for managing the settings of system preinstalled DebiAPPs)+Boot Update feature      
