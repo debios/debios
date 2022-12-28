@@ -260,14 +260,12 @@ set kalku5=kalk
 set kalku6=pocitat
 set kalku7=howmuch
 set kalku8=how much
- 
-set prog2=spustit
 
-set market2=google play
-set market3=debios market
-set market4=debi market
-set market5=debimarket
-set market6=obchod
+set market2=debiappstore
+set market3=debiapps store
+set market4=debiapp store
+set market5=debistore
+set market6=debiosstore
 
 set sysinfo=systeminfo
 set sysinfo2=sysinfo
@@ -497,14 +495,12 @@ goto prikaz
 :clear
 goto splashscreen
 
-:prog
+:market
+rename program.debi program.bat >nul
 start program.bat
-echo Az dokoncite praci, vratte se na uvodni obrazovku stiskem libovolne klavesy
-pause >nul
+echo Launching DebiAPPs Store...
 goto prikaz
 
-:market
-goto prikaz
 
 
 ::

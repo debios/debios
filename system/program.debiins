@@ -25,7 +25,7 @@ cd..
 cd..
 cd system
 if not exist "%cd%\update.bat" ( goto store_updatedownload
-) else ( goto store_splashscreen )
+) else ( goto updatecheck )
 
 ::VERSION MISMATCH CHECK
 ::cd..
@@ -41,7 +41,7 @@ if not exist "%cd%\update.bat" ( goto store_updatedownload
 download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/update.bat update.bat >nul
 
 ::UPDATE CHECK
-if exist "%cd%\update.bat" del update.bat
+:updatecheck
 cd..
 cd data
 cd debiappstore
@@ -63,13 +63,15 @@ if %ERRORLEVEL% == 2 goto store_update_skip
 
 :store_update_proceed
 update.bat
-exit
+call exit
+call rename program.bat program.debi
 
 :store_update_skip
 echo Updateskip
 cls
 
 :store_splashscreen
+cls
 echo.
 echo ------------------------------------------------------------------------------    _____ __          
 echo                                                                                  / ___// /_____  ________ 

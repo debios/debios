@@ -35,11 +35,13 @@ if not exist "%cd%\program.debi" goto nointernet
 ping localhost -n 1 >nul
 echo %TIME% UPDATER: Done!
 echo.
-echo The update has been succesful. You can now close this window and open your DebiAPPs store.
+echo The update has been successful. You can now close this window and open your DebiAPPs store.
 pause >nul
+exit
 
 
 :nointernet
 echo %TIME% UPDATER: We can't connect to the update servers, so we were unable to update DebiAPPs Store.
 echo.
 pause
+exit
