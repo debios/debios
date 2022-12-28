@@ -8,9 +8,9 @@ SET mypath=%~dp0
 
 
 ::VER INFO
-set verzicinka=13.10.21-dev
-set kernelik=DebiOS One 2021
-set titlik=DebiOS O13.10.21
+set verzicinka=28.12.22-dev
+set kernelik=DebiOS One 2023
+set titlik=DebiOS O28.12.22
 
 ::RESIZE WINDOW
 mode con: cols=120 lines=30
