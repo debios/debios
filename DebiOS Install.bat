@@ -111,7 +111,7 @@ echo        You can't use this username! Please select different one.
 echo.
 echo         - Press ENTER to select the username again
 echo.
-echo        TIP: If you leave the username blank, the system will asign you random username!    
+echo        TIP: If you leave the username blank, the system will asign you a random username!    
 echo.
 echo.
 echo.

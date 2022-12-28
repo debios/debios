@@ -148,9 +148,9 @@ cls
 
 
 
-download http://raw.githubusercontent.com/debios/debios.github.io/master/ver.md latest.debidat  >nul
-download http://raw.githubusercontent.com/debios/debios.github.io/master/title.md latesttitle.debidat  >nul
-download http://raw.githubusercontent.com/debios/debios.github.io/master/latestkernel.md latestkernel.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_verdata/ver.md latest.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_verdata/title.md latesttitle.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_verdata/latestkernel.md latestkernel.debidat  >nul
 echo Loading core...
 cls
 set /p latest=<latest.debidat
@@ -170,7 +170,7 @@ set uzivatel=Invalid username
 cd..
 cd system
 cls
-download http://raw.githubusercontent.com/debios/debios.github.io/master/ver.md latest.debidat  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_verdata/ver.md latest.debidat  >nul
 echo Loading core...
 cls
 set /p latest=<latest.debidat
@@ -261,10 +261,8 @@ set kalku6=pocitat
 set kalku7=howmuch
 set kalku8=how much
  
-set prog=program
 set prog2=spustit
 
-set market=market
 set market2=google play
 set market3=debios market
 set market4=debi market
@@ -303,6 +301,9 @@ set colorch5=changecolor
 
 set update1=update
 
+set fupdate1=forceupdate
+set fupdate2=force update
+
 set about1=about
 set about2=aboutsystem
 set about3=aboutinfo
@@ -317,7 +318,25 @@ set duc3=duc
 set duc4=update debiapps
 set duc5=debiappupdatecentre
 
+set applauncher1=applauncher
+set applauncher2=app
+set applauncher3=apps
+set applauncher4=external apps
+set applauncher5=install apps
+set applauncher6=app launcher
+set applauncher7=market
+set applauncher8=program
+
 ::COMMAND CHECK
+
+if /i "%prikaz%" equ "%applauncher1%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher2%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher3%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher4%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher5%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher6%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher7%" goto debiapp_start_applauncher
+if /i "%prikaz%" equ "%applauncher8%" goto debiapp_start_applauncher
 
 if /i "%prikaz%" equ "%duc1%" goto debiapp_update
 if /i "%prikaz%" equ "%duc2%" goto debiapp_update
@@ -402,6 +421,9 @@ if /i "%prikaz%" equ "%colorch4%" goto colorch
 if /i "%prikaz%" equ "%colorch5%" goto colorch
 
 if /i "%prikaz%" equ "%update1%" goto update
+
+if /i "%prikaz%" equ "%fupdate1%" goto forceupdate
+if /i "%prikaz%" equ "%fupdate2%" goto forceupdate
 
 if /i "%prikaz%" equ "%about1%" goto about
 if /i "%prikaz%" equ "%about2%" goto about
@@ -497,11 +519,12 @@ echo    DebiAPPs Update Centre
 echo ----------------------------
 echo.
 echo Select what you want to do:
-CmdMenuSel F8F0 "Update DebiAPPs" "Update every time on boot" "Exit DebiAPPs Update Centre"
+CmdMenuSel F8F0 "Update DebiAPPs" "Update every time on boot" "Remove DebiAPPs" "Exit DebiAPPs Update Centre"
 echo.
 if %ERRORLEVEL% == 1 goto debiapp_update_update
 if %ERRORLEVEL% == 2 goto debiapp_update_bootupdate
-if %ERRORLEVEL% == 3 goto prikaz
+if %ERRORLEVEL% == 3 goto debiapp_update_remove
+if %ERRORLEVEL% == 4 goto prikaz
 
 
 :debiapp_update_bootupdate
@@ -557,7 +580,7 @@ goto debiapp_update_bootupdate
 :debiapp_update_update
 echo.
 echo Which DebiAPPs do you want to update?
-CmdMenuSel F8F0 "Calculator" "Notepad" "SystemInfo" "Snake game" "Update all DebiAPPs" "Back"
+CmdMenuSel F8F0 "Calculator" "Notepad" "SystemInfo" "Snake game" "Update all DebiAPPs" "Back" "Update/install separately: App Launcher"
 echo.
 if %ERRORLEVEL% == 1 goto debiapp_update_calculator
 if %ERRORLEVEL% == 2 goto debiapp_update_notepad
@@ -565,6 +588,7 @@ if %ERRORLEVEL% == 3 goto debiapp_update_systeminfo
 if %ERRORLEVEL% == 4 goto debiapp_update_snake
 if %ERRORLEVEL% == 5 goto debiapp_update_all
 if %ERRORLEVEL% == 6 goto debiapp_update
+if %ERRORLEVEL% == 7 goto debiapp_update_applauncher
 
 
 :debiapp_update_all
@@ -700,6 +724,158 @@ cd..
 cd system
 echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto debiapp_update_update
+
+:debiapp_update_applauncher
+echo.
+echo Updating/Installing App Launcher...
+echo Note: App Launcher is an DebiAPP, that is currently only available to be installed and updated separately, due to security reasons.
+cd..
+cd core
+del applauncher.debiapp >nul
+download http://raw.githubusercontent.com/debios/debios/master/core/applauncher.debiapp applauncher.debiapp  >nul
+if not exist "%cd%\applauncher.debiapp" goto debiapp_update_applauncher_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) - applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo App Launcher succesfully installed/updated! 
+goto debiapp_update_update
+
+:debiapp_update_applauncher_unable
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE (using DUC) [UNSUCCESFUL] - applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Sorry, we were unable to download App Launcher. You can try to download it for yourself - just place applauncher.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+goto debiapp_update_update
+
+
+
+:debiapp_update_remove
+echo.
+echo Which DebiAPPs do you want to remove?
+CmdMenuSel F8F0 "Calculator" "Notepad" "SystemInfo" "Snake game" "App Launcher" "Remove all DebiAPPs" "Back" 
+echo.
+if %ERRORLEVEL% == 1 goto debiapp_update_remove_calculator
+if %ERRORLEVEL% == 2 goto debiapp_update_remove_notepad
+if %ERRORLEVEL% == 3 goto debiapp_update_remove_systeminfo
+if %ERRORLEVEL% == 4 goto debiapp_update_remove_snake
+if %ERRORLEVEL% == 5 goto debiapp_update_remove_applauncher
+if %ERRORLEVEL% == 6 goto debiapp_update_remove_all
+if %ERRORLEVEL% == 7 goto debiapp_update
+
+
+:debiapp_update_remove_all
+echo Removing all DebiAPPs...
+echo.
+cd..
+cd core
+del kalk.debiapp >nul
+
+del notepad.debiapp >nul
+:: Future feature - removal of user created content using notepad.
+
+del snake.debiapp >nul
+:: Removal of snake app data.
+cd..
+cd data
+del snake /Q >nul
+cd..
+cd core
+
+del system.debiapp >nul
+
+del applauncher.debiapp >nul
+:: Future feature - removal of installed apps.
+
+cd..
+cd LOG
+echo ##DEBIAPP REMOVE (using DUC) - kalk.debiapp, notepad.debiapp, snake.debiapp, system.debiapp, applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo All DebiAPPs sucessfully removed! 
+goto debiapp_update_remove
+
+
+:debiapp_update_remove_calculator
+echo.
+echo Removing Calculator...
+cd..
+cd core
+del kalk.debiapp >nul
+cd..
+cd LOG
+echo ##DEBIAPP REMOVE (using DUC) - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Calculator succesfully removed! 
+goto debiapp_update_remove
+
+
+:debiapp_update_remove_notepad
+echo.
+echo Removing Notepad...
+cd..
+cd core
+del notepad.debiapp >nul
+cd..
+cd LOG
+echo ##DEBIAPP REMOVE (using DUC) - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Notepad succesfully removed! 
+goto debiapp_update_remove
+
+
+:debiapp_update_remove_snake
+echo.
+echo Removing Snake...
+cd..
+cd core
+del snake.debiapp >nul
+:: Removal of snake app data.
+cd..
+cd data
+del snake /Q >nul
+cd..
+cd LOG
+echo ##DEBIAPP REMOVE (using DUC) - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo Snake succesfully removed! 
+goto debiapp_update_remove
+
+
+:debiapp_update_remove_systeminfo
+echo.
+echo Removing SystemInfo...
+cd..
+cd core
+del system.debiapp >nul
+cd..
+cd LOG
+echo ##DEBIAPP REMOVE (using DUC) - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo SystemInfo succesfully removed! 
+goto debiapp_update_remove
+
+
+:debiapp_update_remove_applauncher
+echo.
+echo Removing App Launcher...
+cd..
+cd core
+del applauncher.debiapp >nul
+cd..
+cd LOGREMOVE
+echo ##DEBIAPP REMOVE (using DUC) - applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd system
+echo App Launcher succesfully removed! 
+goto debiapp_update_remove
 
 
 
@@ -847,6 +1023,8 @@ goto debiapp_start_sysinfoyes
 
 :debiapp_start_sysinfounable
 echo Sorry, we were unable to download SystemInfo. You can try to download it for yourself - just place system.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+cd..
+cd system
 goto prikaz
 
 
@@ -887,6 +1065,8 @@ goto debiapp_start_calcyes
 
 :debiapp_start_calcunable
 echo Sorry, we were unable to download Calculator. You can try to download it for yourself - just place kalk.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+cd..
+cd system
 goto prikaz
 
 
@@ -935,6 +1115,8 @@ goto debiapp_start_snakeyes
 
 :debiapp_start_snakeunable
 echo Sorry, we were unable to download Snake. You can try to download it for yourself - just place snake.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+cd..
+cd system
 goto prikaz
 
 :debiapp_start_snakeyes
@@ -974,6 +1156,8 @@ goto debiapp_start_notepadyes
 
 :debiapp_start_notepadunable
 echo Sorry, we were unable to download notepad. You can try to download it for yourself - just place notepad.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+cd..
+cd system
 goto prikaz
 
 
@@ -987,6 +1171,72 @@ ping localhost -n 1 >nul
 goto prikaz
 
 
+::------------------DEBIAPP - APP LAUNCHER --------------------------
+
+:debiapp_start_applauncher
+cd..
+cd core
+if not exist "%cd%\applauncher.debiapp" if not exist "%cd%\applauncher.bat" goto debiapp_start_applaunchermissing
+if exist "%cd%\applauncher.bat" rename applauncher.bat applauncher.debiapp
+cd..
+cd system
+goto debiapp_start_applauncheryes
+
+
+:debiapp_start_applaunchermissing
+cd..
+cd system
+echo.
+echo App Launcher is not installed yet! (or missing)
+echo Note: App Launcher is an DebiAPP, that is currently only available to be installed and updated separately, due to security reasons.
+echo You can launch external imported apps. You do this at you own risk! DebiOS does not have antivirus capabilities nor is it capable of restricting foreign software permissions.
+echo.
+echo Do you want to install it right now? 
+
+CmdMenuSel F1F0 "Yes" "No"
+if %ERRORLEVEL% == 1 goto debiapp_start_applauncherinstall
+if %ERRORLEVEL% == 2 goto debiapp_start_applauncherexit
+
+
+
+:debiapp_start_applauncherinstall
+cd..
+cd core
+echo.
+echo Updating DebiAPPs...
+download http://raw.githubusercontent.com/debios/debios/master/core/applauncher.debiapp applauncher.debiapp  >nul
+cd..
+cd LOG
+echo ##DEBIAPP UPDATE - applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
+cd..
+cd core
+if not exist "%cd%\applauncher.debiapp" goto debiapp_start_applauncherunable
+echo App Launcher successfully installed!
+goto debiapp_start_applauncheryes
+
+
+:debiapp_start_applauncherunable
+echo Sorry, we were unable to download App Launcher. You can try to download it for yourself - just place applauncher.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
+cd..
+cd system
+goto prikaz
+
+:debiapp_start_applauncherexit
+echo Quitting the DebiApp...
+cd..
+cd system
+goto prikaz
+
+:debiapp_start_applauncheryes
+cd..
+cd core
+rename applauncher.debiapp applauncher.bat  >nul
+start applauncher.bat
+echo Starting App Launcher...
+cd..
+cd system
+ping localhost -n 1 >nul
+goto prikaz
 
 
 
@@ -1004,8 +1254,9 @@ echo No update available!
 goto prikaz
 
 :update
-SET mypath=%~dp0
 if "%latest%" equ "%verzicka%" goto noupdate
+:forceupdate
+SET mypath=%~dp0
 cls
 echo Updating, please wait...
 echo.

@@ -1,6 +1,70 @@
 @echo off
 
-:zadat
-cls
-echo deprecated
-pause
+::zadat
+::cls
+::echo deprecated
+::pause
+
+title DebiAPP Store (alpha interface)
+
+::BASIC INITIALIZATION
+SET mypath=%~dp0
+chcp 65001
+mode con: cols=120 lines=30
+
+set ver=1.0.0-alpha
+
+
+
+
+::FIRST START CHECK
+cd..
+cd data
+if not exist "%cd%\debiappstore" mkdir "debiappstore"
+cd debiappstore
+if not exist "%cd%\ver.debidat" echo %ver% >ver.debidat
+cd..
+cd..
+cd system
+
+::UPDATE CHECK
+if exist "%cd%\update.bat" del update.bat
+cd..
+cd data
+cd debiappstore
+"%mypath:~0,-2%\system\download.exe" http://raw.githubusercontent.com/debios/debios.github.io/master/_verdata/appstore.md current.debidat  >nul
+set currentver=<current.debidat
+del current.debidat >nul
+cd..
+cd..
+cd system
+if %currentver% == "" goto store_update_skip
+if %ver% == %currentver% goto store_update_skip
+echo There is a new version of DebiAPP Store. Do you want to download it?
+echo Disclaimer: Without the latest version, some apps might be unavailable.
+echo.
+CmdMenuSel F8F0 "Update DebiAPP store" "Not now" 
+echo.
+if %ERRORLEVEL% == 1 goto store_update_proceed
+if %ERRORLEVEL% == 2 goto store_update_skip
+
+:store_update_proceed
+update.bat
+exit
+
+:store_update_skip
+echo Updateskip
+
+
+
+:debiapp_update
+echo.
+echo ----------------------------
+echo    DebiAPPs Update Centre
+echo ----------------------------
+echo.
+echo Select what you want to do:
+CmdMenuSel F8F0 "Update DebiAPPs" "Update every time on boot" "Exit DebiAPPs Update Centre"
+echo.
+if %ERRORLEVEL% == 1 goto debiapp_update_update
+
