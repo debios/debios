@@ -69,7 +69,7 @@ goto debiapp_startup_check
 
 :debiapp_startup_calcmissing
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -79,7 +79,7 @@ goto debiapp_startup_check
 
 :debiapp_startup_sysinfomissing
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -89,7 +89,7 @@ goto debiapp_startup_check
 
 :debiapp_startup_snakemissing
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -113,10 +113,10 @@ del kalk.debiapp >nul
 del notepad.debiapp >nul
 del snake.debiapp >nul
 del system.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE (DebiAPP Boot Update) - kalk.debiapp, notepad.debiapp, snake.debiapp, system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -600,10 +600,10 @@ del kalk.debiapp >nul
 del notepad.debiapp >nul
 del snake.debiapp >nul
 del system.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/system.debiapp system.debiapp  >nul
 if not exist "%cd%\kalk.debiapp" goto debiapp_update_all_unable
 if not exist "%cd%\notepad.debiapp" goto debiapp_update_all_unable
 if not exist "%cd%\snake.debiapp" goto debiapp_update_all_unable
@@ -631,7 +631,7 @@ echo Updating Calculator...
 cd..
 cd core
 del kalk.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/kalk.debiapp kalk.debiapp  >nul
 if not exist "%cd%\kalk.debiapp" goto debiapp_update_calculator_unable
 cd..
 cd LOG
@@ -656,7 +656,7 @@ echo Updating Notepad...
 cd..
 cd core
 del notepad.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/notepad.debiapp notepad.debiapp  >nul
 if not exist "%cd%\notepad.debiapp" goto debiapp_update_notepad_unable
 cd..
 cd LOG
@@ -681,7 +681,7 @@ echo Updating Snake...
 cd..
 cd core
 del snake.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/snake.debiapp snake.debiapp  >nul
 if not exist "%cd%\snake.debiapp" goto debiapp_update_snake_unable
 cd..
 cd LOG
@@ -706,7 +706,7 @@ echo Updating SystemInfo...
 cd..
 cd core
 del system.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/system.debiapp system.debiapp  >nul
 if not exist "%cd%\system.debiapp" goto debiapp_update_systeminfo_unable
 cd..
 cd LOG
@@ -732,7 +732,7 @@ echo Note: App Launcher is an DebiAPP, that is currently only available to be in
 cd..
 cd core
 del applauncher.debiapp >nul
-download http://raw.githubusercontent.com/debios/debios/master/core/applauncher.debiapp applauncher.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/applauncher.debiapp applauncher.debiapp  >nul
 if not exist "%cd%\applauncher.debiapp" goto debiapp_update_applauncher_unable
 cd..
 cd LOG
@@ -750,6 +750,21 @@ cd..
 cd system
 echo Sorry, we were unable to download App Launcher. You can try to download it for yourself - just place applauncher.debiapp file from official DebiOS release for this version(%verzicka%) back into "core" folder.
 goto debiapp_update_update
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -876,6 +891,26 @@ cd..
 cd system
 echo App Launcher succesfully removed! 
 goto debiapp_update_remove
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1010,7 +1045,7 @@ goto debiapp_start_sysinfoyes
 echo SystemInfo not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/system.debiapp system.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/system.debiapp system.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - system.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -1052,7 +1087,7 @@ goto debiapp_start_calcyes
 echo Calculator not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/kalk.debiapp kalk.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/kalk.debiapp kalk.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - kalk.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -1103,7 +1138,7 @@ goto debiapp_start_snakeyes
 echo Snake not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/snake.debiapp snake.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/snake.debiapp snake.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - snake.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -1143,7 +1178,7 @@ goto debiapp_start_notepadyes
 echo Notepad not found! Trying to update from internet...
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/notepad.debiapp notepad.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/notepad.debiapp notepad.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - notepad.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
@@ -1204,7 +1239,7 @@ cd..
 cd core
 echo.
 echo Updating DebiAPPs...
-download http://raw.githubusercontent.com/debios/debios/master/core/applauncher.debiapp applauncher.debiapp  >nul
+download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/apps/applauncher.debiapp applauncher.debiapp  >nul
 cd..
 cd LOG
 echo ##DEBIAPP UPDATE - applauncher.debiapp## %year%.%month%.%day%, %time% >>log%year%.%month%.%day%.log
