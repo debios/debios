@@ -19,7 +19,7 @@ set pathdl=%mypath:~0,-3%\download.exe
 if not exist "%cd%\current.debidat" goto nointernet
 set currentver=<current.debidat
 del current.debidat >nul
-del ver.debidat
+del ver.debidat >nul
 echo %currentver% >ver.debidat
 cd..
 cd..
@@ -29,7 +29,8 @@ ping localhost -n 1 >nul
 ::DOWNLOAD AND REPLACE
 title DebiAPPs Store UPDATER -- (Downloading current version)
 echo %TIME% UPDATER: Updating the store...
-del program.debi
+del program.debi >nul
+del program.bat >nul
 download http://raw.githubusercontent.com/debios/debios.github.io/master/_dastore/DebiOS/currentstore.bat program.debi >nul
 if not exist "%cd%\program.debi" goto nointernet
 ping localhost -n 1 >nul
